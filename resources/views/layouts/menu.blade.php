@@ -3,7 +3,7 @@
         <a href="{{ url('/') }}" class="app-brand-link">
             <span class="app-brand-logo demo w-100">
                 <span style="">
-                    <h3>Panic Button</h3>
+                    <img src="{{asset('assets/img/1.png')}}" class="w-100" alt="logo" srcset="">
                 </span>
             </span>
         </a>
