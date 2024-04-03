@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Resindential extends Model
+class Residential extends Model
 {
     use HasFactory;
 
-    protected $table = 'resindentials';
+    protected $table = 'residential';
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     public $timestamps = true;
@@ -19,5 +19,10 @@ class Resindential extends Model
         'name',
         'address',
     ];
+
+    public function residentialBlock()
+    {
+        return $this->hasMany(ResidentialBlock::class, 'id_resindential');
+    }
 
 }

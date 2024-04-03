@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Residential_block extends Model
+class ResidentialBlock extends Model
 {
     use HasFactory;
 
-    protected $table = 'residential_block';
+    protected $table = 'resindential_block';
     protected $primaryKey = 'code_block';
-    protected $keyType = 'int';
+    protected $keyType = 'string';
     public $timestamps = true;
-    public $incrementing = true;
+    public $incrementing = false;
 
     protected $fillable = [
         'code_block',
@@ -21,8 +21,8 @@ class Residential_block extends Model
         'name_block',
     ];
 
-    public function resindential()
+    public function residential()
     {
-        return $this->belongsTo(Resindential::class, 'id_residential');
+        return $this->belongsTo(Residential::class, 'id');
     }
 }
