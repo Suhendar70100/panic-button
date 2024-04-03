@@ -21,12 +21,12 @@ class ResidentialBlock extends Model
         'name_block',
     ];
 
-    public function residential()
+    public function residentials()
     {
         return $this->belongsTo(Residential::class, 'id');
     }
 
-    public function device()
+    public function devices()
     {
         return $this->hasMany(Device::class, 'code_block_resindential', 'code_block');
     }
