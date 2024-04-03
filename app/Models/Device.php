@@ -23,7 +23,7 @@ class Device extends Model
         'access',
     ];
 
-    public function residentialBlocks()
+    public function residentialBlock()
     {
         return $this->belongsTo(ResidentialBlock::class, 'code_block_resindential', 'code_block');
     }   

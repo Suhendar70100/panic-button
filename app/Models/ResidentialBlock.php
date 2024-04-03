@@ -21,7 +21,7 @@ class ResidentialBlock extends Model
         'name_block',
     ];
 
-    public function residentials()
+    public function residential()
     {
         return $this->belongsTo(Residential::class, 'id');
     }

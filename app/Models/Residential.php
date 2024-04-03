@@ -20,7 +20,7 @@ class Residential extends Model
         'address',
     ];
 
-    public function residentialBlock()
+    public function residentialBlocks()
     {
         return $this->hasMany(ResidentialBlock::class, 'id_resindential');
     }
