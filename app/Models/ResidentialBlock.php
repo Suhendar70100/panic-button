@@ -25,4 +25,9 @@ class ResidentialBlock extends Model
     {
         return $this->belongsTo(Residential::class, 'id');
     }
+
+    public function device()
+    {
+        return $this->hasMany(Device::class, 'code_block_resindential', 'code_block');
+    }
 }
