@@ -29,18 +29,25 @@
                 <div>Dashboard</div>
             </a>
         </li>
-
-        <li class="menu-item dropdown">
-            <a class="menu-link dropdown-toggle" id="perumahanDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
                 <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
                 <div>Perumahan</div>
             </a>
-            <div class="dropdown-menu" aria-labelledby="perumahanDropdown">
-                <a class="dropdown-item" href="#">Nama Perumahan</a>
-                <a class="dropdown-item" href="#">Blok Perumahan</a>
-            </div>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <div>Nama Perumahan</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <div>Blok Perumahan</div>
+                    </a>
+                </li>
+            </ul>
         </li>
-            
         
 
         <li class="menu-item">
