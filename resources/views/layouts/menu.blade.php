@@ -25,8 +25,35 @@
     <ul class="menu-inner py-1">
         <li class="menu-item @if (Request::is('/')) active @endif ">
             <a href="{{ url('/') }}" class="menu-link">
-                <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
+                <i class="menu-icon tf-icons mdi mdi-view-dashboard"></i>
                 <div>Dashboard</div>
+            </a>
+        </li>
+
+        <li class="menu-item dropdown">
+            <a class="menu-link dropdown-toggle" id="perumahanDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
+                <div>Perumahan</div>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="perumahanDropdown">
+                <a class="dropdown-item" href="#">Nama Perumahan</a>
+                <a class="dropdown-item" href="#">Blok Perumahan</a>
+            </div>
+        </li>
+            
+        
+
+        <li class="menu-item">
+            <a href="" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-devices"></i>
+                <div>Perangkat</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a href="" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-history"></i>
+                <div>Riwayat Tombol</div>
             </a>
         </li>
 
