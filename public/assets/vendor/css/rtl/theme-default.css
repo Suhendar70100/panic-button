@@ -10,7 +10,7 @@ body {
 }
 
 .text-primary {
-  color: #666cff !important;
+  color: #f40d0d !important;
 }
 
 .text-body[href]:hover {
@@ -31,7 +31,7 @@ a.bg-primary:hover, a.bg-primary:focus {
 
 .bg-label-primary {
   background-color: #e8e9ff !important;
-  color: #666cff !important;
+  color: #f40d0d !important;
 }
 
 .page-item.active .page-link, .page-item.active .page-link:hover, .page-item.active .page-link:focus,
@@ -236,13 +236,13 @@ button.list-group-item-primary.active {
 
 .btn-primary {
   color: #fff;
-  background-color: #666cff;
-  border-color: #666cff;
+  background-color: #f40d0d;
+  border-color: #f40d0d;
 }
 .btn-primary:hover {
   color: #fff !important;
-  background-color: #5a5fe0 !important;
-  border-color: #5a5fe0 !important;
+  background-color: #f40d0d !important;
+  border-color: #f40d0d !important;
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus, .btn-primary.focus {
   color: #fff;
@@ -1237,7 +1237,7 @@ li.ui-timepicker-selected,
   color: #fff !important;
 }
 .bg-menu-theme .menu-item.active > .menu-link:not(.menu-toggle) {
-  background-color: #666cff;
+  background-color: #f40d0d;
 }
 .bg-menu-theme.menu-horizontal .menu-sub > .menu-item.active > .menu-link:not(.menu-toggle), .bg-menu-theme.menu-horizontal .menu-sub > .menu-item.active > .menu-link:not(.menu-toggle)::before {
   background-color: #ededff;
