@@ -27,4 +27,8 @@ class Device extends Model
     {
         return $this->belongsTo(ResidentialBlock::class, 'code_block_resindential', 'code_block');
     }   
+    public function histroyButtons()
+    {
+        return $this->hasMany(HistoryButton::class, 'guid', 'guid');
+    }
 }
