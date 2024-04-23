@@ -65,10 +65,13 @@
         </li>
 
         <li class="menu-item">
-            <a href="" class="menu-link">
+            <a href="" class="menu-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="menu-icon tf-icons mdi mdi-logout"></i>
                 <div>Sign Out</div>
             </a>
         </li>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     </ul>
 </aside>

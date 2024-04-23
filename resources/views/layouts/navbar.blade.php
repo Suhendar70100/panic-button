@@ -38,10 +38,13 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="">
+                        <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form-navbar').submit();">
                             <i class="mdi mdi-logout me-2"></i>
                             <span class="align-middle">Log Out</span>
                         </a>
+                        <form id="logout-form-navbar" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </li>
