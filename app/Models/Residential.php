@@ -9,7 +9,7 @@ class Residential extends Model
 {
     use HasFactory;
 
-    protected $table = 'residential';
+    protected $table = 'resindential';
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     public $timestamps = true;

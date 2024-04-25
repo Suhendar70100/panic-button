@@ -60,7 +60,6 @@
 
 <script src="{{asset('/assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
 <script src="{{asset('/assets/vendor/libs/flatpickr/flatpickr.js')}}"></script>
-<script src="{{asset('/assets/js/button-colvis.js')}}"></script>
 {{--<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></scr>--}}
 
 {{--<script src="{{asset('/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js')}}"></script>--}}

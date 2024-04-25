@@ -30,15 +30,15 @@
             </a>
         </li>
         
-        <li class="menu-item">
+        <li class="menu-item  @if(in_array(Request::getRequestUri(),['/residential'])) active open @endif ">
             <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
-                <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
-                <div>Perumahan</div>
+                <i class="menu-icon tf-icons mdi mdi-cog"></i>
+                <div>Pengaturan</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        <div>Nama Perumahan</div>
+                <li class="menu-item @if (Request::is('residential')) active @endif">
+                    <a href="{{ route('residential.index') }}" class="menu-link">
+                        <div>Perumahan</div>
                     </a>
                 </li>
                 <li class="menu-item">
