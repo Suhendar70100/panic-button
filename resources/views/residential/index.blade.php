@@ -8,12 +8,8 @@
             <div class="d-flex justify-content-between me-3 align-items-center">
                 <h5 class="card-header">Daftar Perumahan</h5>
                 <button type="button"
-                class="btn btn-danger"
-                data-bs-toggle="modal"
-                data-bs-target="#addResidentialButton"><i class="mdi mdi-plus"></i>Tambah
+                class="btn btn-danger" id="buttonAdd"><i class="mdi mdi-plus"></i>Tambah
                 </button>
-
-
             </div>
             <div class="card-datatable table-responsive">
                 <table class="table table-bordered dataTable">
