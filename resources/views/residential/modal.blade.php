@@ -7,7 +7,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="text-center mb-4">
           <h3 class="mb-2 pb-1 title">Tambah Perumahan Baru</h3>
-          <p>Add new card to complete payment</p>
         </div>
         <form id="addNewCCForm" class="row g-4" onsubmit="return false">
           <div class="col-12">
