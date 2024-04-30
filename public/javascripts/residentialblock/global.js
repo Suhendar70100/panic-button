@@ -1,152 +1,159 @@
-const resindential_block = $('.dataTableBlock')
-const residentialBlockUrl = `${BASE_URL}/api/residential-block`
-const addButtonBlock = $('#buttonAddBlok')
-const modalTitleBlock = $('.title')
-const submitButtonBlock = $('#submit-block-button')
+const residential_block = $('.dataTable')
+const residentialUrl = `${BASE_URL}/api/residential-block`
+const addButton = $('#buttonAdd')
+const modalTitle = $('.title')
+const submitButton = $('#submit-button')
 
 
-const blockFormConfig = {
+const formConfig = {
     fields: [
         {
             id: 'code_block',
             name: 'Kode Blok'
         },
         {
-            id: 'id_residential',
+            id: 'id_resindential',
             name: 'Nama Blok'
         },
         {
             id: 'name_block',
             name: 'Perumahan'
         },
+
     ]
 }
-const getInitDataBlock = () => {
-    resindential_block.DataTable({
+
+
+const getInitData = () => {
+    residential_block.DataTable({
         processing: true,
         serverSide: true,
-        ajax: residentialBlockUrl,
+        ajax: residentialUrl,
         columns: [
-            {
-                "orderable": false,
-                "searchable": false,
-                "render": function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }
-            },
+            // {
+            //     "orderable": false,
+            //     "searchable": false,
+            //     "render": function (data, type, row, meta) {
+            //         return meta.row + meta.settings._iDisplayStart + 1;
+            //     }
+            // },
             {data: 'code_block', name: 'code_block'},
-            {data: 'id_residential', name: 'id_residential'},
             {data: 'name_block', name: 'name_block'},
+            {data: 'perumahan', name: 'perumahan'},
             {data: 'aksi', name: 'aksi'},
         ]
     });
 }
 
 $(function () {
-    getInitDataBlock()
+    getInitData()
 })
 
-const resetFormBlock = () => blockFormConfig.fields.forEach(({id}) => $(`#${id}`).val(''))
+const resetForm = () => formConfig.fields.forEach(({id}) => $(`#${id}`).val(''))
 
 $(function () {
-    addButtonBlock.on('click', function () {
-        modalTitleBlock.text('Tambah Blok Perumahan')
-        submitButtonBlock.text('Tambah')
-        resetFormBlock()
+    addButton.on('click', function () {
+        modalTitle.text('Tambah Blok Perumahan')
+        submitButton.text('Tambah')
+        resetForm()
         $('#addResidentialBlockButton').modal('show');
     })
 
     $('#addResidentialBlockButton').on('hidden.bs.modal', function () {
-        resetFormBlock();
+        resetForm();
         $(this).find('.invalid-feedback').text('');
     });
 })
 
-submitButtonBlock.on('click', function () {
+submitButton.on('click', function () {
     const id = $('#id').val()
-    $(this).text().toLowerCase() === "ubah" ? updateBlock(id) : storeBlock()
+    $(this).text().toLowerCase() === "ubah" ? update(id) : store()
 })
 
-const storeBlock = () => {
+$('#residential').change(function() {
+    var selectedResidentialId = $(this).val();
+    
+    $('#id_resindential').val(selectedResidentialId);
+});
+
+const store = () => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
-        url: residentialBlockUrl,
+        url: residentialUrl,
         method: 'POST',
         dataType: 'json',
-        data: dataFormBlock(), 
+        data: dataForm(),
         headers: {
             'X-CSRF-TOKEN': csrfToken
         },
         success: res => {
             $('#addResidentialBlockButton').modal('hide');
-            resetFormBlock();
+            resetForm();
             toastr.success(res.message, 'Success');
-            reloadDatatableBlock(resindential_block);
+            reloadDatatable(residential);
         },
         error: ({responseJSON}) => {
-            handleErrorBlock(responseJSON); 
+            handleError(responseJSON);
         }
     });
 }
 
-const updateBlock = id => {
+const update = id => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
-        url: `${residentialBlockUrl}/${id}`,
+        url: `${residentialUrl}/${id}`,
         method: 'PUT',
         dataType: 'json',
-        data: dataFormBlock(), 
+        data: dataForm(),
         headers: {
             'X-CSRF-TOKEN': csrfToken
         },
         success: res => {
             $('#addResidentialBlockButton').modal('hide');
-            resetFormBlock();
-            toastr.success(res.message, 'Success');
-            reloadDatatable(resindential_block);
+            resetForm()
+            toastr.success(res.message, 'Success')
+            reloadDatatable(residential_block)
         },
         error: ({responseJSON}) => {
-            handleErrorBlock(responseJSON); 
+            handleError(responseJSON)
         }
     })
 }
 
-
-const dataFormBlock = () => {
+const dataForm = () => {
     return {
         code_block: $('#code_block').val(),
-        id_residential: $('#id_residential').val(),
+        id_resindential: $('#id_resindential').val(),
         name_block: $('#name_block').val(),
     };
 }
 
-const reloadDatatableBlock = table => table.DataTable().ajax.reload(null, false);
+const reloadDatatable = table => table.DataTable().ajax.reload(null, false);
 
-const handleErrorBlock = (responseJSON) => {
-    if (responseJSON && responseJSON.errors) {
-        const {errors} = responseJSON;
-        blockFormConfig.fields.forEach(({id}) => {
-            if (!errors.hasOwnProperty(id)) {
-                $('#' + id).removeClass('is-invalid');
-            } else {
-                $(`#${id}`).addClass("is-invalid").next().text(errors[id][0]);
-            }
-        });
-    }
-};
+const handleError = (responseJSON) => {
+    const {errors} = responseJSON
 
+
+    formConfig.fields.forEach(({id}) => {
+        if (!errors.hasOwnProperty(id)) {
+            $('#' + id).removeClass('is-invalid')
+        } else {
+            $(`#${id}`).addClass("is-invalid").next().text(errors[id][0]);
+        }
+    })
+}
 
 $(document).on('click', '.btn-edit', function () {
     const residentialId = $(this).data('id')
     $.ajax({
-        url: `${residentialBlockUrl}/${residentialId}`,
+        url: `${residentialUrl}/${residentialId}`,
         method: 'GET',
         dataType: 'json',
         success: res => {
             $('#id').val(res.id)
-            submitButtonBlock.text('Ubah')
-            modalTitleBlock.text('Ubah Blok Perumahan')
-            blockFormConfig.fields.forEach(({id}) => {
+            submitButton.text('Ubah')
+            modalTitle.text('Ubah Perumahan')
+            formConfig.fields.forEach(({id}) => {
                 $(`#${id}`).val(res?.[id]);
             })
             $('#addResidentialBlockButton').modal('show');
@@ -178,7 +185,7 @@ $(document).on('click', '.btn-delete', function () {
     }).then(result => {
         if (result.value) {
             $.ajax({
-                url: `${residentialBlockUrl}/${id}`,
+                url: `${residentialUrl}/${id}`,
                 method: 'DELETE',
                 dataType: 'JSON',
                 headers: {
@@ -186,9 +193,20 @@ $(document).on('click', '.btn-delete', function () {
                 },
                 success: res => {
                     toastr.success(res.message, 'Success');
-                    reloadDatatable(resindential_block);
+                    reloadDatatable(residential_block);
                 }
             });
         }
     });
 });
+$(document).ready(function() {
+    // Ketika terjadi perubahan pada elemen select dengan id residential
+    $('#residential').change(function() {
+        // Ambil nilai id perumahan yang dipilih
+        var selectedResidentialId = $(this).val();
+        
+        // Set nilai id_resindential sesuai dengan nilai id perumahan yang dipilih
+        $('#id_resindential').val(selectedResidentialId);
+    });
+});
+

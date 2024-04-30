@@ -15,14 +15,14 @@ Route::middleware('auth:sanctum')->as('api.')->group(function () {
     Route::get('/residential/{id}', [ResidentialController::class, 'show'])->name('residential.show');
     Route::put('/residential/{id}', [ResidentialController::class, 'update'])->name('residential.update');
     Route::delete('/residential/{id}', [ResidentialController::class, 'delete'])->name('residential.delete');
+
+    // route residential block
+    Route::get('/residential-block', [ResidentialBlockController::class, 'dataTable'])->name('residentialblock.dataTable');
+    Route::post('/residential-block', [ResidentialBlockController::class, 'store'])->name('residentialblock.store');
+    Route::get('/residential-block/{id}', [ResidentialBlockController::class, 'show'])->name('residentialblock.show');
+    Route::put('/residential-block/{id}', [ResidentialBlockController::class, 'update'])->name('residentialblock.update');
+    Route::delete('/residential-block/{id}', [ResidentialBlockController::class, 'delete'])->name('residentialblock.delete');
 });
 
-Route::middleware('auth:sanctum')->as('api.')->group(function () {
-    Route::get('/residential-block', [ResidentialBlockController::class, 'dataTableBlock'])->name('residentialblock.dataTableBlock');
-    Route::post('/residential-block', [ResidentialBlockController::class, 'store'])->name('residentialblock.storeBlock');
-    Route::get('/residential-block/{id}', [ResidentialBlockController::class, 'show'])->name('residentialblock.showBlock');
-    Route::put('/residential-block/{id}', [ResidentialBlockController::class, 'update'])->name('residentialblock.updateBlock');
-    Route::delete('/residential-block/{id}', [ResidentialBlockController::class, 'delete'])->name('residentialblock.deleteBlock');
-});
 
 

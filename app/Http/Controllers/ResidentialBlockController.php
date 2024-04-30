@@ -8,36 +8,36 @@ use Illuminate\Http\JsonResponse;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\ResidentialBlockCreateRequest;
 use App\Http\Requests\ResidentialBlockUpdateRequest;
+use App\Models\Residential;
 use Illuminate\Http\Request;
 
 class ResidentialBlockController extends Controller
 {
     public function index()
     {
-        return view('residentialblock.index');
+        $residentialData = Residential::all();
+
+        $usedResidentialIds = ResidentialBlock::pluck('id_resindential')->toArray();
+
+        return view('residentialblock.index', compact('residentialData', 'usedResidentialIds'));
     }
 
-    public function dataTableBlock(): JsonResponse
+    public function dataTable(): JsonResponse
     {
-        $order = Request::input('order', 'DESC');
-        $perPage = Request::input('per_page', 10);
-        $search = Request::input('search', '');
-
-        $query = ResidentialBlock::query()
-            ->where('name_block', 'like', "%$search%")
-            ->orderBy('name_block', $order);
-
-        $data = $query->paginate($perPage);
+        $data = ResidentialBlock::query()->get();
 
         return DataTables::of($data)
-            ->addColumn('aksi', function ($row) {
-                return "<a href='#' data-id='$row->id' class='mdi mdi-pencil text-warning btn-edit'></a>
+        ->addColumn('aksi', function ($row) {
+            return " <a href='#' data-id='$row->id' class='mdi mdi-pencil text-warning btn-edit'></a>
                             <a href='#' data-id='$row->id' class='mdi mdi-trash-can text-danger btn-delete'></a>";
-            })
-            ->rawColumns(['aksi'])
-            ->toJson();
+        })
+        ->addColumn('perumahan', function (ResidentialBlock $resindentialBlock) {
+            return $resindentialBlock->resindential->name;
+        })
+        ->rawColumns(['aksi', 'perumahan'])
+        ->toJson();
     }
-        public function storeBlock(ResidentialBlockCreateRequest $request): JsonResponse
+    public function store(ResidentialBlockCreateRequest $request): JsonResponse
     {
 
         try {
@@ -57,7 +57,7 @@ class ResidentialBlockController extends Controller
         }
     }
 
-    public function showBlock($id): JsonResponse
+    public function show($id): JsonResponse
     {
         $residentialBlock = ResidentialBlock::find($id);
 
@@ -68,7 +68,7 @@ class ResidentialBlockController extends Controller
         return response()->json($residentialBlock);
     }
 
-    public function updateBlock(ResidentialBlockUpdateRequest $request, $id): JsonResponse
+    public function update(ResidentialBlockUpdateRequest $request, $id): JsonResponse
     {
         $residentialBlock = ResidentialBlock::find($id);
 
@@ -77,7 +77,7 @@ class ResidentialBlockController extends Controller
         }
 
         $residentialBlock->code_block = $request->code_block;
-        $residentialBlock->id_residential = $request->id_residential;
+        $residentialBlock->id_resindential = $request->id_resindential;
         $residentialBlock->name_block = $request->name_block;
         $residentialBlock->save();
 

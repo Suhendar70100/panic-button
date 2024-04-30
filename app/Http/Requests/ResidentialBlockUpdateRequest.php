@@ -23,7 +23,7 @@ class ResidentialBlockUpdateRequest extends FormRequest
     {
         return [
             'code_block' => ['required', 'min:3'],
-            'id_residential' => ['required', 'min:3'],
+            'id_resindential' => [],
             'name_block' => ['required', 'min:3'],
         ];
     }
@@ -38,10 +38,10 @@ class ResidentialBlockUpdateRequest extends FormRequest
         return [
             'code_block.required' => 'Kode Blok Perumahan Harus diisi',
             'code_block.min' => 'Kode Blok Perumahan minimal harus memiliki :min karakter',
-            'id_residential.required' => 'Nama Blok Perumahan Harus diisi',
-            'id_residential.min' => 'Nama Blok Perumahan minimal harus memiliki :min karakter',
-            'residential.required' => 'Perumahan Harus diisi',
-            'residential.min' => 'Perumahan minimal harus memiliki :min karakter',
+            'name_block.required' => 'Nama Blok Perumahan Harus diisi',
+            'name_block.min' => 'Nama Blok Perumahan minimal harus memiliki :min karakter',
+            // 'name_block.required' => 'Perumahan Harus diisi',
+            // 'name_block.min' => 'Perumahan minimal harus memiliki :min karakter',
         ];
     }
 }

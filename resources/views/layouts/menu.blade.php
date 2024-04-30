@@ -30,7 +30,7 @@
             </a>
         </li>
         
-        <li class="menu-item  @if(in_array(Request::getRequestUri(),['/residential'])) active open @endif ">
+        <li class="menu-item  @if(in_array(Request::getRequestUri(),['/residential', '/residential-block'])) active open @endif ">
             <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
                 <i class="menu-icon tf-icons mdi mdi-cog"></i>
                 <div>Pengaturan</div>

@@ -17,7 +17,7 @@ class ResidentialBlock extends Model
 
     protected $fillable = [
         'code_block',
-        'id_residential',
+        'id_resindential',
         'name_block',
     ];
 

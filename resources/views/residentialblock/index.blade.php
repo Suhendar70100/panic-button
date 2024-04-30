@@ -8,7 +8,7 @@
             <div class="d-flex justify-content-between me-3 align-items-center">
                 <h5 class="card-header">Daftar Blok Perumahan</h5>
                 <button type="button"
-                class="btn btn-danger" id="buttonAddBlok"><i class="mdi mdi-plus"></i>Tambah
+                class="btn btn-danger" id="buttonAdd"><i class="mdi mdi-plus"></i>Tambah
                 </button>
             </div>
             <div class="card-datatable table-responsive">

@@ -1,4 +1,4 @@
-<input type="hidden" id="id">
+<input type="hidden" id="id_resindential" name="id_resindential">
 
 <div class="modal fade" id="addResidentialBlockButton" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered1 modal-simple modal-add-new-cc">
@@ -20,7 +20,7 @@
           <div class="col-12">
               <div class="form-floating form-floating-outline">
                 <p class="invalid-feedback"></p>
-                <input id="id_residential" name="residentialName" class="form-control credit-card-mask" type="text"
+                <input id="name_block" name="residentialName" class="form-control credit-card-mask" type="text"
                   placeholder="Nama Blok" />
                 <div class="invalid-feedback"></div>
                 <label for="modalAddCard">Nama Blok</label>
@@ -28,15 +28,21 @@
           </div>
           <div class="col-12">
             <div class="form-floating form-floating-outline">
-              <p class="invalid-feedback"></p>
-              <input id="name_block" name="residentialBlok" class="form-control credit-card-mask" type="text"
-                placeholder="Perumahan" />
-              <div class="invalid-feedback"></div>
-              <label for="modalAddCard">Perumahan</label>
+                <p class="invalid-feedback"></p>
+                <select id="resindential" name="residentialBlock" class="form-control">
+                    <option value="">Pilih Perumahan</option>
+                    @foreach($residentialData as $residential)
+                        @if(!in_array($residential->id, $usedResidentialIds))
+                            <option value="{{ $residential->id }}">{{ $residential->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+                <div class="invalid-feedback"></div>
+                <label for="modalAddCard">Perumahan</label>
             </div>
-        </div>
+          </div>
           <div class="col-12 text-center">
-            <button type="submit" id="submit-block-button" class="btn btn-danger me-sm-3 me-1">Submit</button>
+            <button type="submit" id="submit-button" class="btn btn-danger me-sm-3 me-1">Submit</button>
             <button type="reset" class="btn btn-outline-secondary btn-reset" data-bs-dismiss="modal" aria-label="Close">
               Cancel
             </button>
