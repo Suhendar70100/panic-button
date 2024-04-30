@@ -23,7 +23,7 @@ class ResidentialBlockCreateRequest extends FormRequest
     {
         return [
             'code_block' => ['required', 'min:3'],
-            'id_resindential' => [],
+            'id_residential' => [''],
             'name_block' => ['required', 'min:3'],
         ];
     }

@@ -9,7 +9,7 @@ class ResidentialBlock extends Model
 {
     use HasFactory;
 
-    protected $table = 'resindential_block';
+    protected $table = 'residential_block';
     protected $primaryKey = 'code_block';
     protected $keyType = 'string';
     public $timestamps = true;
@@ -17,17 +17,17 @@ class ResidentialBlock extends Model
 
     protected $fillable = [
         'code_block',
-        'id_resindential',
+        'id_residential', // perbaikan nama kunci asing
         'name_block',
     ];
 
     public function residential()
     {
-        return $this->belongsTo(Residential::class, 'id');
+        return $this->belongsTo(Residential::class, 'id_residential'); // perbaikan nama kunci asing
     }
 
     public function devices()
     {
-        return $this->hasMany(Device::class, 'code_block_resindential', 'code_block');
+        return $this->hasMany(Device::class, 'code_block_residential', 'code_block');
     }
 }

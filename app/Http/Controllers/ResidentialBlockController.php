@@ -17,7 +17,7 @@ class ResidentialBlockController extends Controller
     {
         $residentialData = Residential::all();
 
-        $usedResidentialIds = ResidentialBlock::pluck('id_resindential')->toArray();
+        $usedResidentialIds = ResidentialBlock::pluck('id_residential')->toArray();
 
         return view('residentialblock.index', compact('residentialData', 'usedResidentialIds'));
     }
@@ -31,8 +31,8 @@ class ResidentialBlockController extends Controller
             return " <a href='#' data-id='$row->id' class='mdi mdi-pencil text-warning btn-edit'></a>
                             <a href='#' data-id='$row->id' class='mdi mdi-trash-can text-danger btn-delete'></a>";
         })
-        ->addColumn('perumahan', function (ResidentialBlock $resindentialBlock) {
-            return $resindentialBlock->resindential->name;
+        ->addColumn('perumahan', function (ResidentialBlock $residentialBlock) {
+            return $residentialBlock->residential->name;
         })
         ->rawColumns(['aksi', 'perumahan'])
         ->toJson();

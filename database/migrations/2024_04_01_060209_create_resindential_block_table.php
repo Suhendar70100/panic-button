@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resindential_block', function (Blueprint $table) {
+        Schema::create('residential_block', function (Blueprint $table) {
             $table->string('code_block', 20)->primary();
-            $table->unsignedBigInteger('id_resindential');
-            $table->string('name_block',20);
+            $table->unsignedBigInteger('id_residential')->nullable();
+            $table->string('name_block', 20);
             $table->timestamps();
         
-            $table->foreign('id_resindential')->references('id')->on('resindential');
+            $table->foreign('id_residential')->references('id')->on('residential');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resindential_block');
+        Schema::dropIfExists('residential_block');
     }
 };

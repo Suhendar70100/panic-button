@@ -12,7 +12,7 @@ const formConfig = {
             name: 'Kode Blok'
         },
         {
-            id: 'id_resindential',
+            id: 'id_residential',
             name: 'Nama Blok'
         },
         {
@@ -73,7 +73,7 @@ submitButton.on('click', function () {
 $('#residential').change(function() {
     var selectedResidentialId = $(this).val();
     
-    $('#id_resindential').val(selectedResidentialId);
+    $('#id_residential').val(selectedResidentialId);
 });
 
 const store = () => {
@@ -90,7 +90,7 @@ const store = () => {
             $('#addResidentialBlockButton').modal('hide');
             resetForm();
             toastr.success(res.message, 'Success');
-            reloadDatatable(residential);
+            reloadDatatable(residential_block);
         },
         error: ({responseJSON}) => {
             handleError(responseJSON);
@@ -123,7 +123,7 @@ const update = id => {
 const dataForm = () => {
     return {
         code_block: $('#code_block').val(),
-        id_resindential: $('#id_resindential').val(),
+        id_residential: $('#id_residential').val(),
         name_block: $('#name_block').val(),
     };
 }
@@ -206,7 +206,7 @@ $(document).ready(function() {
         var selectedResidentialId = $(this).val();
         
         // Set nilai id_resindential sesuai dengan nilai id perumahan yang dipilih
-        $('#id_resindential').val(selectedResidentialId);
+        $('#id_residential').val(selectedResidentialId);
     });
 });
 
