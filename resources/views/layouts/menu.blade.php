@@ -41,8 +41,8 @@
                         <div>Perumahan</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
+                <li class="menu-item @if (Request::is('residential-block')) active @endif">
+                    <a href="{{ route('residentialblock.index') }}" class="menu-link">
                         <div>Blok Perumahan</div>
                     </a>
                 </li>
