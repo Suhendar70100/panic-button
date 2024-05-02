@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('residential_block', function (Blueprint $table) {
-            $table->string('code_block', 20)->primary();
+            $table->id();
+            $table->string('code_block', 20)->unique();
             $table->unsignedBigInteger('id_residential')->nullable();
             $table->string('name_block', 20);
             $table->timestamps();
