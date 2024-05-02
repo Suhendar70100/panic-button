@@ -70,19 +70,23 @@ class ResidentialBlockController extends Controller
 
     public function update(ResidentialBlockUpdateRequest $request, $code_block): JsonResponse
     {
-        $residentialBlock = ResidentialBlock::find($code_block);
-
-        if (!$residentialBlock) {
-            return response()->json(['message' => 'Data tidak ditemukan'], 404);
-        }
-
-        $residentialBlock->code_block = $request->code_block;
-        // $residentialBlock->id_residential = $request->id_residential;
-        $residentialBlock->name_block = $request->name_block;
-        $residentialBlock->perumahan = $residentialBlock->residential->name; // Ambil nama perumahan dari relasi
-        $residentialBlock->save();
-
-        return response()->json(['message' => 'Data berhasil diperbarui'], 200);
+            try {
+                $residentialBlock = ResidentialBlock::find($code_block);
+                $data = $request->validated();
+                $residentialBlock->update($data);
+    
+                return response()->json(
+                    data: ['message' => 'Data berhasil di ubah'],
+                    status: 201
+                );
+    
+            } catch (Exception $exception) {
+                return response()->json(
+                    data: ['message' => $exception->getMessage()],
+                    status: 400
+                );
+            }
+    
     }
 
     public function delete($code_block): JsonResponse
