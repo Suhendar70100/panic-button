@@ -57,8 +57,8 @@
             </a>
         </li>
 
-        <li class="menu-item">
-            <a href="" class="menu-link">
+        <li class="menu-item @if (Request::is('history-button')) active @endif ">
+            <a href="{{ route('history.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-history"></i>
                 <div>Riwayat Tombol</div>
             </a>
