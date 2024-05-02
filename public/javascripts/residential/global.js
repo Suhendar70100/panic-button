@@ -181,6 +181,9 @@ $(document).on('click', '.btn-delete', function () {
                 success: res => {
                     toastr.success(res.message, 'Success');
                     reloadDatatable(residential);
+                },
+                error: err => {
+                        toastr.error('Gagal menghapus data. Silahkan coba lagi.', 'Error');
                 }
             });
         }
