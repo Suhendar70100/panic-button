@@ -17,13 +17,13 @@ class ResidentialBlock extends Model
 
     protected $fillable = [
         'code_block',
-        'id_residential', // perbaikan nama kunci asing
+        'id_residential',
         'name_block',
     ];
 
     public function residential()
     {
-        return $this->belongsTo(Residential::class, 'id_residential'); // perbaikan nama kunci asing
+        return $this->belongsTo(Residential::class, 'id_residential');
     }
 
     public function devices()

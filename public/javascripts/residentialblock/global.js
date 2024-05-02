@@ -66,8 +66,8 @@ $(function () {
 })
 
 submitButton.on('click', function () {
-    const id = $('#id').val()
-    $(this).text().toLowerCase() === "ubah" ? update(id) : store()
+    const code_block = $('#code_block').val()
+    $(this).text().toLowerCase() === "ubah" ? update(code_block) : store()
 })
 
 $('#residential').change(function() {
@@ -98,10 +98,12 @@ const store = () => {
     });
 }
 
-const update = id => {
+const update = code_block => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    console.log('ID yang akan diupdate:', code_block); 
+
     $.ajax({
-        url: `${residentialUrl}/${id}`,
+        url: `${residentialUrl}/${code_block}`,
         method: 'PUT',
         dataType: 'json',
         data: dataForm(),
@@ -110,12 +112,13 @@ const update = id => {
         },
         success: res => {
             $('#addResidentialBlockButton').modal('hide');
-            resetForm()
-            toastr.success(res.message, 'Success')
-            reloadDatatable(residential_block)
+            resetForm();
+            toastr.success(res.message, 'Success');
+            reloadDatatable(residential_block);
         },
-        error: ({responseJSON}) => {
-            handleError(responseJSON)
+        error: ({responseJSON, status}) => {
+            console.error('Error updating residential block:', responseJSON, status);
+            handleError(responseJSON); // Tambahkan penanganan error
         }
     })
 }
@@ -145,6 +148,7 @@ const handleError = (responseJSON) => {
 
 $(document).on('click', '.btn-edit', function () {
     const residentialId = $(this).data('id')
+    console.log(residentialId)
     $.ajax({
         url: `${residentialUrl}/${residentialId}`,
         method: 'GET',
@@ -152,7 +156,7 @@ $(document).on('click', '.btn-edit', function () {
         success: res => {
             $('#id').val(res.id)
             submitButton.text('Ubah')
-            modalTitle.text('Ubah Perumahan')
+            modalTitle.text('Ubah Blok Perumahan')
             formConfig.fields.forEach(({id}) => {
                 $(`#${id}`).val(res?.[id]);
             })
@@ -200,12 +204,8 @@ $(document).on('click', '.btn-delete', function () {
     });
 });
 $(document).ready(function() {
-    // Ketika terjadi perubahan pada elemen select dengan id residential
     $('#residential').change(function() {
-        // Ambil nilai id perumahan yang dipilih
         var selectedResidentialId = $(this).val();
-        
-        // Set nilai id_resindential sesuai dengan nilai id perumahan yang dipilih
         $('#id_residential').val(selectedResidentialId);
     });
 });

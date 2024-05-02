@@ -40,8 +40,6 @@ class ResidentialBlockCreateRequest extends FormRequest
             'code_block.min' => 'Kode Blok Perumahan minimal harus memiliki :min karakter',
             'name_block.required' => 'Nama Blok Perumahan Harus diisi',
             'name_block.min' => 'Nama Blok Perumahan minimal harus memiliki :min karakter',
-            // 'name_block.required' => 'Perumahan Harus diisi',
-            // 'name_block.min' => 'Perumahan minimal harus memiliki :min karakter',
         ];
     }
 }

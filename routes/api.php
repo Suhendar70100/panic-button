@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->as('api.')->group(function () {
     Route::get('/residential-block', [ResidentialBlockController::class, 'dataTable'])->name('residentialblock.dataTable');
     Route::post('/residential-block', [ResidentialBlockController::class, 'store'])->name('residentialblock.store');
     Route::get('/residential-block/{id}', [ResidentialBlockController::class, 'show'])->name('residentialblock.show');
-    Route::put('/residential-block/{id}', [ResidentialBlockController::class, 'update'])->name('residentialblock.update');
+    Route::put('/residential-block/{code_block}', [ResidentialBlockController::class, 'update'])->name('residentialblock.update');
     Route::delete('/residential-block/{id}', [ResidentialBlockController::class, 'delete'])->name('residentialblock.delete');
 });
 

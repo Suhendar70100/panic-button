@@ -28,8 +28,8 @@ class ResidentialBlockController extends Controller
 
         return DataTables::of($data)
         ->addColumn('aksi', function ($row) {
-            return " <a href='#' data-id='$row->id' class='mdi mdi-pencil text-warning btn-edit'></a>
-                            <a href='#' data-id='$row->id' class='mdi mdi-trash-can text-danger btn-delete'></a>";
+            return " <a href='#' data-id='$row->code_block' class='mdi mdi-pencil text-warning btn-edit'></a>
+                            <a href='#' data-id='$row->code_block' class='mdi mdi-trash-can text-danger btn-delete'></a>";
         })
         ->addColumn('perumahan', function (ResidentialBlock $residentialBlock) {
             return $residentialBlock->residential->name;
@@ -57,9 +57,9 @@ class ResidentialBlockController extends Controller
         }
     }
 
-    public function show($id): JsonResponse
+    public function show($code_block): JsonResponse
     {
-        $residentialBlock = ResidentialBlock::find($id);
+        $residentialBlock = ResidentialBlock::find($code_block);
 
         if (!$residentialBlock) {
             return response()->json(['message' => 'Data perumahan tidak ditemukan'], 404);
@@ -68,25 +68,26 @@ class ResidentialBlockController extends Controller
         return response()->json($residentialBlock);
     }
 
-    public function update(ResidentialBlockUpdateRequest $request, $id): JsonResponse
+    public function update(ResidentialBlockUpdateRequest $request, $code_block): JsonResponse
     {
-        $residentialBlock = ResidentialBlock::find($id);
+        $residentialBlock = ResidentialBlock::find($code_block);
 
         if (!$residentialBlock) {
             return response()->json(['message' => 'Data tidak ditemukan'], 404);
         }
 
         $residentialBlock->code_block = $request->code_block;
-        $residentialBlock->id_resindential = $request->id_resindential;
+        // $residentialBlock->id_residential = $request->id_residential;
         $residentialBlock->name_block = $request->name_block;
+        $residentialBlock->perumahan = $residentialBlock->residential->name; // Ambil nama perumahan dari relasi
         $residentialBlock->save();
 
         return response()->json(['message' => 'Data berhasil diperbarui'], 200);
     }
 
-    public function deleteBlock($id): JsonResponse
+    public function delete($code_block): JsonResponse
     {
-        $residentialBlock = ResidentialBlock::find($id);
+        $residentialBlock = ResidentialBlock::find($code_block);
 
         if (!$residentialBlock) {
             return response()->json(['message' => 'Data tidak ditemukan'], 404);
