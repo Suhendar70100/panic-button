@@ -57,9 +57,9 @@ class ResidentialBlockController extends Controller
         }
     }
 
-    public function show($code_block): JsonResponse
+    public function show($id): JsonResponse
     {
-        $residentialBlock = ResidentialBlock::find($code_block);
+        $residentialBlock = ResidentialBlock::find($id);
 
         if (!$residentialBlock) {
             return response()->json(['message' => 'Data perumahan tidak ditemukan'], 404);
@@ -89,9 +89,9 @@ class ResidentialBlockController extends Controller
     
     }
 
-    public function delete($code_block): JsonResponse
+    public function delete($id): JsonResponse
     {
-        $residentialBlock = ResidentialBlock::find($code_block);
+        $residentialBlock = ResidentialBlock::find($id);
 
         if (!$residentialBlock) {
             return response()->json(['message' => 'Data tidak ditemukan'], 404);

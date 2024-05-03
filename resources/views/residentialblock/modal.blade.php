@@ -1,4 +1,4 @@
-<input type="hidden" id="id_residential" name="id_residential">
+<input type="hidden" id="id" name="id_residential">
 
 <div class="modal fade" id="addResidentialBlockButton" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered1 modal-simple modal-add-new-cc">

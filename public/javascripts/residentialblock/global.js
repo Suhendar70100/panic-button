@@ -100,7 +100,6 @@ const store = () => {
 
 const update = id => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
-    console.log('ID yang akan diupdate:', id); 
 
     $.ajax({
         url: `${residentialUrl}/${id}`,
@@ -126,7 +125,7 @@ const update = id => {
 const dataForm = () => {
     return {
         code_block: $('#code_block').val(),
-        id_residential: $('#id_residential').val(),
+        id_residential: $('#residential').val(),
         name_block: $('#name_block').val(),
     };
 }
@@ -148,7 +147,6 @@ const handleError = (responseJSON) => {
 
 $(document).on('click', '.btn-edit', function () {
     const residentialId = $(this).data('id')
-    console.log(residentialId)
     $.ajax({
         url: `${residentialUrl}/${residentialId}`,
         method: 'GET',

@@ -10,8 +10,8 @@ class ResidentialBlock extends Model
     use HasFactory;
 
     protected $table = 'residential_block';
-    protected $primaryKey = 'code_block';
-    protected $keyType = 'string';
+    protected $primaryKey = 'id';
+    protected $keyType = 'int';
     public $timestamps = true;
     public $incrementing = false;
 
