@@ -28,8 +28,8 @@ class ResidentialBlockController extends Controller
 
         return DataTables::of($data)
         ->addColumn('aksi', function ($row) {
-            return " <a href='#' data-id='$row->code_block' class='mdi mdi-pencil text-warning btn-edit'></a>
-                            <a href='#' data-id='$row->code_block' class='mdi mdi-trash-can text-danger btn-delete'></a>";
+            return " <a href='#' data-id='$row->id' class='mdi mdi-pencil text-warning btn-edit'></a>
+                            <a href='#' data-id='$row->id' class='mdi mdi-trash-can text-danger btn-delete'></a>";
         })
         ->addColumn('perumahan', function (ResidentialBlock $residentialBlock) {
             return $residentialBlock->residential->name;

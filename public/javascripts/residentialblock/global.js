@@ -66,8 +66,8 @@ $(function () {
 })
 
 submitButton.on('click', function () {
-    const code_block = $('#code_block').val()
-    $(this).text().toLowerCase() === "ubah" ? update(code_block) : store()
+    const id = $('#id').val()
+    $(this).text().toLowerCase() === "ubah" ? update(id) : store()
 })
 
 $('#residential').change(function() {
@@ -98,12 +98,12 @@ const store = () => {
     });
 }
 
-const update = code_block => {
+const update = id => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
-    console.log('ID yang akan diupdate:', code_block); 
+    console.log('ID yang akan diupdate:', id); 
 
     $.ajax({
-        url: `${residentialUrl}/${code_block}`,
+        url: `${residentialUrl}/${id}`,
         method: 'PUT',
         dataType: 'json',
         data: dataForm(),
@@ -118,7 +118,7 @@ const update = code_block => {
         },
         error: ({responseJSON, status}) => {
             console.error('Error updating residential block:', responseJSON, status);
-            handleError(responseJSON); // Tambahkan penanganan error
+            handleError(responseJSON); 
         }
     })
 }
