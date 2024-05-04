@@ -30,13 +30,11 @@
             <div class="form-floating form-floating-outline">
                 <p class="invalid-feedback"></p>
                 <select id="residential" name="residentialBlock" class="form-control">
-                  <option value=""></option>
-                  @foreach($residentialData as $residential)
-                      @if(!in_array($residential->id, $usedResidentialIds))
-                          <option value="{{ $residential->id }}">{{ $residential->name }}</option>
-                      @endif
+                  <option value="">Pilih Perumahan</option>
+                  @foreach($residentialData as $residentialBlock)
+                      <option value="{{ $residentialBlock->id }}">{{ $residentialBlock->name }}</option>
                   @endforeach
-                </select>              
+              </select>                        
                 <div class="invalid-feedback"></div>
                 <label for="modalAddCard">Perumahan</label>
             </div>

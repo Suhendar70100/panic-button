@@ -16,15 +16,12 @@ class ResidentialBlockController extends Controller
     public function index()
     {
         $residentialData = Residential::all();
-
-        $usedResidentialIds = ResidentialBlock::pluck('id_residential')->toArray();
-
-        return view('residentialblock.index', compact('residentialData', 'usedResidentialIds'));
+    
+        return view('residentialblock.index', compact('residentialData'));
     }
-
     public function dataTable(): JsonResponse
     {
-        $data = ResidentialBlock::query()->get();
+        $data = ResidentialBlock::with('residential')->get();
 
         return DataTables::of($data)
         ->addColumn('aksi', function ($row) {

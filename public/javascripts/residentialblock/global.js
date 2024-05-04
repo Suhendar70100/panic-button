@@ -69,15 +69,9 @@ submitButton.on('click', function () {
     const id = $('#id').val()
     $(this).text().toLowerCase() === "ubah" ? update(id) : store()
 })
-
-$('#residential').change(function() {
-    var selectedResidentialId = $(this).val();
-    
-    $('#id_residential').val(selectedResidentialId);
-});
-
 const store = () => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
     $.ajax({
         url: residentialUrl,
         method: 'POST',
@@ -93,19 +87,20 @@ const store = () => {
             reloadDatatable(residential_block);
         },
         error: ({responseJSON}) => {
-            handleError(responseJSON);
+            toastr.error('Kode blok sudah digunakan', 'Error');
         }
     });
 }
 
 const update = id => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    const formData = dataForm();
 
     $.ajax({
         url: `${residentialUrl}/${id}`,
         method: 'PUT',
         dataType: 'json',
-        data: dataForm(),
+        data: formData,
         headers: {
             'X-CSRF-TOKEN': csrfToken
         },
@@ -117,9 +112,9 @@ const update = id => {
         },
         error: ({responseJSON, status}) => {
             console.error('Error updating residential block:', responseJSON, status);
-            handleError(responseJSON); 
+            toastr.error('Kode blok sudah digunakan.', 'Error');
         }
-    })
+    });
 }
 
 const dataForm = () => {
@@ -146,27 +141,29 @@ const handleError = (responseJSON) => {
 }
 
 $(document).on('click', '.btn-edit', function () {
-    const residentialId = $(this).data('id')
+    const residentialId = $(this).data('id');
     $.ajax({
         url: `${residentialUrl}/${residentialId}`,
         method: 'GET',
         dataType: 'json',
         success: res => {
-            $('#id').val(res.id)
-            submitButton.text('Ubah')
-            modalTitle.text('Ubah Blok Perumahan')
-            formConfig.fields.forEach(({id}) => {
-                $(`#${id}`).val(res?.[id]);
-            })
+            $('#id').val(res.id);
+            submitButton.text('Ubah');
+            modalTitle.text('Ubah Blok Perumahan');
+            
+            $.each(res, function(key, value) {
+                $(`#${key}`).val(value);
+            });
+
+            $('#residential').val(res.id_residential);
+
             $('#addResidentialBlockButton').modal('show');
         },
         error: err => {
-            console.log(err)
+            console.log(err);
         }
     })
-
 })
-
 
 $(document).on('click', '.btn-delete', function () {
     const id = $(this).data('id');
@@ -201,10 +198,3 @@ $(document).on('click', '.btn-delete', function () {
         }
     });
 });
-$(document).ready(function() {
-    $('#residential').change(function() {
-        var selectedResidentialId = $(this).val();
-        $('#id_residential').val(selectedResidentialId);
-    });
-});
-
