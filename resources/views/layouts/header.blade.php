@@ -66,6 +66,9 @@
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{asset('/assets/vendor/css/pages/cards-statistics.css')}}"/>
     <link rel="stylesheet" href="{{asset('/assets/vendor/css/pages/cards-analytics.css')}}"/>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    
     <!-- Helpers -->
     <script src="{{asset('/assets/vendor/js/helpers.js')}}"></script>
 

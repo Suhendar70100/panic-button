@@ -30,7 +30,7 @@
             </a>
         </li>
         
-        <li class="menu-item  @if(in_array(Request::getRequestUri(),['/residential'])) active open @endif ">
+        <li class="menu-item  @if(in_array(Request::getRequestUri(),['/residential', '/residential-block'])) active open @endif ">
             <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
                 <i class="menu-icon tf-icons mdi mdi-cog"></i>
                 <div>Pengaturan</div>
@@ -41,8 +41,8 @@
                         <div>Perumahan</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
+                <li class="menu-item @if (Request::is('residential-block')) active @endif">
+                    <a href="{{ route('residentialblock.index') }}" class="menu-link">
                         <div>Blok Perumahan</div>
                     </a>
                 </li>
@@ -57,8 +57,8 @@
             </a>
         </li>
 
-        <li class="menu-item">
-            <a href="" class="menu-link">
+        <li class="menu-item @if (Request::is('history-button')) active @endif ">
+            <a href="{{ route('history.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-history"></i>
                 <div>Riwayat Tombol</div>
             </a>

@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('device', function (Blueprint $table) {
             $table->string('guid', 20)->unique()->primary();
-            $table->string('code_block_resindential', 20)->nullable();
+            $table->string('code_block_residential', 20)->nullable();
             $table->string('house_number', 10)->nullable();
             $table->boolean('status')->default(false);
             $table->boolean('access')->default(false);
             $table->timestamps();
 
-            $table->foreign('code_block_resindential')->references('code_block')->on('resindential_block');
+            $table->foreign('code_block_residential')->references('code_block')->on('residential_block');
         });
     }
 

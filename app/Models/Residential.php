@@ -9,7 +9,7 @@ class Residential extends Model
 {
     use HasFactory;
 
-    protected $table = 'resindential';
+    protected $table = 'residential'; // perbaikan nama tabel
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     public $timestamps = true;
@@ -22,7 +22,7 @@ class Residential extends Model
 
     public function residentialBlocks()
     {
-        return $this->hasMany(ResidentialBlock::class, 'id_resindential');
+        return $this->hasMany(ResidentialBlock::class, 'id_residential'); // perbaikan nama metode hubungan
     }
 
 }

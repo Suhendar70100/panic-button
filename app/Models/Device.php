@@ -25,7 +25,7 @@ class Device extends Model
 
     public function residentialBlock()
     {
-        return $this->belongsTo(ResidentialBlock::class, 'code_block_resindential', 'code_block');
+        return $this->belongsTo(ResidentialBlock::class, 'code_block_residential', 'code_block');
     }   
     public function histroyButtons()
     {

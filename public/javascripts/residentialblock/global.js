@@ -1,5 +1,5 @@
-const residential = $('.dataTable')
-const residentialUrl = `${BASE_URL}/api/residential`
+const residential_block = $('.dataTable')
+const residentialUrl = `${BASE_URL}/api/residential-block`
 const addButton = $('#buttonAdd')
 const modalTitle = $('.title')
 const submitButton = $('#submit-button')
@@ -8,32 +8,38 @@ const submitButton = $('#submit-button')
 const formConfig = {
     fields: [
         {
-            id: 'name',
-            name: 'Nama Perumahan'
+            id: 'code_block',
+            name: 'Kode Blok'
         },
         {
-            id: 'address',
-            name: 'Alamat Perumahan'
+            id: 'id_residential',
+            name: 'Nama Blok'
         },
+        {
+            id: 'name_block',
+            name: 'Perumahan'
+        },
+
     ]
 }
 
 
 const getInitData = () => {
-    residential.DataTable({
+    residential_block.DataTable({
         processing: true,
         serverSide: true,
         ajax: residentialUrl,
         columns: [
-            {
-                "orderable": false,
-                "searchable": false,
-                "render": function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }
-            },
-            {data: 'name', name: 'name'},
-            {data: 'address', name: 'address'},
+            // {
+            //     "orderable": false,
+            //     "searchable": false,
+            //     "render": function (data, type, row, meta) {
+            //         return meta.row + meta.settings._iDisplayStart + 1;
+            //     }
+            // },
+            {data: 'code_block', name: 'code_block'},
+            {data: 'name_block', name: 'name_block'},
+            {data: 'perumahan', name: 'perumahan'},
             {data: 'aksi', name: 'aksi'},
         ]
     });
@@ -47,13 +53,13 @@ const resetForm = () => formConfig.fields.forEach(({id}) => $(`#${id}`).val(''))
 
 $(function () {
     addButton.on('click', function () {
-        modalTitle.text('Tambah Perumahan')
+        modalTitle.text('Tambah Blok Perumahan')
         submitButton.text('Tambah')
         resetForm()
-        $('#addResidentialButton').modal('show');
+        $('#addResidentialBlockButton').modal('show');
     })
 
-    $('#addResidentialButton').on('hidden.bs.modal', function () {
+    $('#addResidentialBlockButton').on('hidden.bs.modal', function () {
         resetForm();
         $(this).find('.invalid-feedback').text('');
     });
@@ -63,6 +69,12 @@ submitButton.on('click', function () {
     const id = $('#id').val()
     $(this).text().toLowerCase() === "ubah" ? update(id) : store()
 })
+
+$('#residential').change(function() {
+    var selectedResidentialId = $(this).val();
+    
+    $('#id_residential').val(selectedResidentialId);
+});
 
 const store = () => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -75,10 +87,10 @@ const store = () => {
             'X-CSRF-TOKEN': csrfToken
         },
         success: res => {
-            $('#addResidentialButton').modal('hide');
+            $('#addResidentialBlockButton').modal('hide');
             resetForm();
             toastr.success(res.message, 'Success');
-            reloadDatatable(residential);
+            reloadDatatable(residential_block);
         },
         error: ({responseJSON}) => {
             handleError(responseJSON);
@@ -97,10 +109,10 @@ const update = id => {
             'X-CSRF-TOKEN': csrfToken
         },
         success: res => {
-            $('#addResidentialButton').modal('hide');
+            $('#addResidentialBlockButton').modal('hide');
             resetForm()
             toastr.success(res.message, 'Success')
-            reloadDatatable(residential)
+            reloadDatatable(residential_block)
         },
         error: ({responseJSON}) => {
             handleError(responseJSON)
@@ -110,8 +122,9 @@ const update = id => {
 
 const dataForm = () => {
     return {
-        name: $('#name').val(),
-        address: $('#address').val(),
+        code_block: $('#code_block').val(),
+        id_residential: $('#id_residential').val(),
+        name_block: $('#name_block').val(),
     };
 }
 
@@ -143,7 +156,7 @@ $(document).on('click', '.btn-edit', function () {
             formConfig.fields.forEach(({id}) => {
                 $(`#${id}`).val(res?.[id]);
             })
-            $('#addResidentialButton').modal('show');
+            $('#addResidentialBlockButton').modal('show');
         },
         error: err => {
             console.log(err)
@@ -180,12 +193,20 @@ $(document).on('click', '.btn-delete', function () {
                 },
                 success: res => {
                     toastr.success(res.message, 'Success');
-                    reloadDatatable(residential);
-                },
-                error: err => {
-                        toastr.error('Gagal menghapus data. Silahkan coba lagi.', 'Error');
+                    reloadDatatable(residential_block);
                 }
             });
         }
     });
 });
+$(document).ready(function() {
+    // Ketika terjadi perubahan pada elemen select dengan id residential
+    $('#residential').change(function() {
+        // Ambil nilai id perumahan yang dipilih
+        var selectedResidentialId = $(this).val();
+        
+        // Set nilai id_resindential sesuai dengan nilai id perumahan yang dipilih
+        $('#id_residential').val(selectedResidentialId);
+    });
+});
+
