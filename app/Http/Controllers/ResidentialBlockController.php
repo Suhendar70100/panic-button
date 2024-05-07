@@ -16,15 +16,12 @@ class ResidentialBlockController extends Controller
     public function index()
     {
         $residentialData = Residential::all();
-
-        $usedResidentialIds = ResidentialBlock::pluck('id_residential')->toArray();
-
-        return view('residentialblock.index', compact('residentialData', 'usedResidentialIds'));
+    
+        return view('residentialblock.index', compact('residentialData'));
     }
-
     public function dataTable(): JsonResponse
     {
-        $data = ResidentialBlock::query()->get();
+        $data = ResidentialBlock::with('residential')->get();
 
         return DataTables::of($data)
         ->addColumn('aksi', function ($row) {
@@ -68,23 +65,28 @@ class ResidentialBlockController extends Controller
         return response()->json($residentialBlock);
     }
 
-    public function update(ResidentialBlockUpdateRequest $request, $id): JsonResponse
+    public function update(ResidentialBlockUpdateRequest $request, $code_block): JsonResponse
     {
-        $residentialBlock = ResidentialBlock::find($id);
-
-        if (!$residentialBlock) {
-            return response()->json(['message' => 'Data tidak ditemukan'], 404);
-        }
-
-        $residentialBlock->code_block = $request->code_block;
-        $residentialBlock->id_resindential = $request->id_resindential;
-        $residentialBlock->name_block = $request->name_block;
-        $residentialBlock->save();
-
-        return response()->json(['message' => 'Data berhasil diperbarui'], 200);
+            try {
+                $residentialBlock = ResidentialBlock::find($code_block);
+                $data = $request->validated();
+                $residentialBlock->update($data);
+    
+                return response()->json(
+                    data: ['message' => 'Data berhasil di ubah'],
+                    status: 201
+                );
+    
+            } catch (Exception $exception) {
+                return response()->json(
+                    data: ['message' => $exception->getMessage()],
+                    status: 400
+                );
+            }
+    
     }
 
-    public function deleteBlock($id): JsonResponse
+    public function delete($id): JsonResponse
     {
         $residentialBlock = ResidentialBlock::find($id);
 

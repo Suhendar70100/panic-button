@@ -69,15 +69,9 @@ submitButton.on('click', function () {
     const id = $('#id').val()
     $(this).text().toLowerCase() === "ubah" ? update(id) : store()
 })
-
-$('#residential').change(function() {
-    var selectedResidentialId = $(this).val();
-    
-    $('#id_residential').val(selectedResidentialId);
-});
-
 const store = () => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
     $.ajax({
         url: residentialUrl,
         method: 'POST',
@@ -93,37 +87,40 @@ const store = () => {
             reloadDatatable(residential_block);
         },
         error: ({responseJSON}) => {
-            handleError(responseJSON);
+            toastr.error('Kode blok sudah digunakan', 'Error');
         }
     });
 }
 
 const update = id => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    const formData = dataForm();
+
     $.ajax({
         url: `${residentialUrl}/${id}`,
         method: 'PUT',
         dataType: 'json',
-        data: dataForm(),
+        data: formData,
         headers: {
             'X-CSRF-TOKEN': csrfToken
         },
         success: res => {
             $('#addResidentialBlockButton').modal('hide');
-            resetForm()
-            toastr.success(res.message, 'Success')
-            reloadDatatable(residential_block)
+            resetForm();
+            toastr.success(res.message, 'Success');
+            reloadDatatable(residential_block);
         },
-        error: ({responseJSON}) => {
-            handleError(responseJSON)
+        error: ({responseJSON, status}) => {
+            console.error('Error updating residential block:', responseJSON, status);
+            toastr.error('Kode blok sudah digunakan.', 'Error');
         }
-    })
+    });
 }
 
 const dataForm = () => {
     return {
         code_block: $('#code_block').val(),
-        id_residential: $('#id_residential').val(),
+        id_residential: $('#residential').val(),
         name_block: $('#name_block').val(),
     };
 }
@@ -144,27 +141,29 @@ const handleError = (responseJSON) => {
 }
 
 $(document).on('click', '.btn-edit', function () {
-    const residentialId = $(this).data('id')
+    const residentialId = $(this).data('id');
     $.ajax({
         url: `${residentialUrl}/${residentialId}`,
         method: 'GET',
         dataType: 'json',
         success: res => {
-            $('#id').val(res.id)
-            submitButton.text('Ubah')
-            modalTitle.text('Ubah Perumahan')
-            formConfig.fields.forEach(({id}) => {
-                $(`#${id}`).val(res?.[id]);
-            })
+            $('#id').val(res.id);
+            submitButton.text('Ubah');
+            modalTitle.text('Ubah Blok Perumahan');
+            
+            $.each(res, function(key, value) {
+                $(`#${key}`).val(value);
+            });
+
+            $('#residential').val(res.id_residential);
+
             $('#addResidentialBlockButton').modal('show');
         },
         error: err => {
-            console.log(err)
+            console.log(err);
         }
     })
-
 })
-
 
 $(document).on('click', '.btn-delete', function () {
     const id = $(this).data('id');
@@ -199,14 +198,3 @@ $(document).on('click', '.btn-delete', function () {
         }
     });
 });
-$(document).ready(function() {
-    // Ketika terjadi perubahan pada elemen select dengan id residential
-    $('#residential').change(function() {
-        // Ambil nilai id perumahan yang dipilih
-        var selectedResidentialId = $(this).val();
-        
-        // Set nilai id_resindential sesuai dengan nilai id perumahan yang dipilih
-        $('#id_residential').val(selectedResidentialId);
-    });
-});
-

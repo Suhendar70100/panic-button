@@ -1,4 +1,4 @@
-<input type="hidden" id="id_residential" name="id_residential">
+<input type="hidden" id="id" name="id_residential">
 
 <div class="modal fade" id="addResidentialBlockButton" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered1 modal-simple modal-add-new-cc">
@@ -30,13 +30,11 @@
             <div class="form-floating form-floating-outline">
                 <p class="invalid-feedback"></p>
                 <select id="residential" name="residentialBlock" class="form-control">
-                    <option value="">Pilih Perumahan</option>
-                    @foreach($residentialData as $residential)
-                        @if(!in_array($residential->id, $usedResidentialIds))
-                            <option value="{{ $residential->id }}">{{ $residential->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
+                  <option value="">Pilih Perumahan</option>
+                  @foreach($residentialData as $residentialBlock)
+                      <option value="{{ $residentialBlock->id }}">{{ $residentialBlock->name }}</option>
+                  @endforeach
+              </select>                        
                 <div class="invalid-feedback"></div>
                 <label for="modalAddCard">Perumahan</label>
             </div>

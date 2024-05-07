@@ -10,20 +10,20 @@ class ResidentialBlock extends Model
     use HasFactory;
 
     protected $table = 'residential_block';
-    protected $primaryKey = 'code_block';
-    protected $keyType = 'string';
+    protected $primaryKey = 'id';
+    protected $keyType = 'int';
     public $timestamps = true;
     public $incrementing = false;
 
     protected $fillable = [
         'code_block',
-        'id_residential', // perbaikan nama kunci asing
+        'id_residential',
         'name_block',
     ];
 
     public function residential()
     {
-        return $this->belongsTo(Residential::class, 'id_residential'); // perbaikan nama kunci asing
+        return $this->belongsTo(Residential::class, 'id_residential');
     }
 
     public function devices()
