@@ -10,14 +10,14 @@ class Device extends Model
     use HasFactory;
 
     protected $table = 'device';
-    protected $primaryKey = 'guid';
+    protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $timestamps = true;
     public $incrementing = false;
 
     protected $fillable = [
         'guid',
-        'code_block_resindential',
+        'code_block_residential',
         'house_number',
         'status',
         'access',

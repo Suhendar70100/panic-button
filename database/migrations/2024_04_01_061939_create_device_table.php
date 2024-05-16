@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('device', function (Blueprint $table) {
-            $table->string('guid', 20)->unique()->primary();
+            $table->id();
+            $table->string('guid', 20)->unique();
             $table->string('code_block_residential', 20)->nullable();
             $table->string('house_number', 10)->nullable();
             $table->boolean('status')->default(false);

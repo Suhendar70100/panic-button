@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeviceController;
 use Illuminate\Http\Request;
 use App\Models\HistoryButton;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,14 @@ Route::middleware('auth:sanctum')->as('api.')->group(function () {
 
     // route history button
     Route::get('/history-button', [HistoryButtonController::class, 'dataTable'])->name('history.dataTable');
+
+    // route device
+    Route::get('/device', [DeviceController::class, 'dataTable'])->name('device.dataTable');
+    Route::post('/device', [DeviceController::class, 'store'])->name('device.store');
+    Route::get('/device/{id}', [DeviceController::class, 'show'])->name('device.show');
+    Route::put('/device/{id}', [DeviceController::class, 'update'])->name('device.update');
+    Route::delete('/device/{id}', [DeviceController::class, 'delete'])->name('device.delete');
+    
 });
 
 

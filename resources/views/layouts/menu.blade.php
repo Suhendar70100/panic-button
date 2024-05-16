@@ -50,8 +50,8 @@
         </li>
         
 
-        <li class="menu-item">
-            <a href="" class="menu-link">
+        <li class="menu-item @if (Request::is('device')) active @endif">
+            <a href="{{ route('device.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-devices"></i>
                 <div>Perangkat</div>
             </a>
