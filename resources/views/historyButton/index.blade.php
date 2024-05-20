@@ -10,6 +10,7 @@
                     <thead>
                     <tr>
                         <th>GUID</th>
+                        <th>Nama Perumahan</th>
                         <th>Nama Blok</th>
                         <th>Nomor Rumah</th>
                         <th>State</th>

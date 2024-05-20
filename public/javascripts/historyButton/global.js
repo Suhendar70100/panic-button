@@ -13,6 +13,7 @@ $(document).ready(function() {
             },
             columns: [
                 { data: 'guid', name: 'guid' },
+                { data: 'residential_name', name: 'residential_name' },
                 { data: 'residential_block', name: 'residential_block.name_block' },
                 { data: 'house_number', name: 'house_number' },
                 { data: 'state', name: 'histroyButtons.state' },

@@ -42,6 +42,7 @@ public function dataTable(Request $request): JsonResponse
     $formattedData = [];
     foreach ($data as $device) {
         $residentialBlockName = $device->residentialBlock ? $device->residentialBlock->name_block : null;
+        $residentialName = $device->residentialBlock && $device->residentialBlock->residential ? $device->residentialBlock->residential->name : null;
         $houseNumber = $device->house_number;
         $state = '-';
         $time = '-';
@@ -53,6 +54,7 @@ public function dataTable(Request $request): JsonResponse
 
         $formattedData[] = [
             'guid' => $device->guid,
+            'residential_name' => $residentialName,
             'residential_block' => $residentialBlockName,
             'house_number' => $houseNumber,
             'state' => $state,
