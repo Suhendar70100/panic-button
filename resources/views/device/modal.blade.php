@@ -21,9 +21,9 @@
                         <div class="form-floating form-floating-outline">
                             <p class="invalid-feedback"></p>
                             <select id="code_block_residential" name="code_block_residential" class="form-control">
-                                <option value="">Pilih Perangkat</option>
+                                <option value="">Pilih Blok</option>
                                 @foreach ($deviceData as $device)
-                                    <option value="{{ $device->code_block }}">{{ $device->name_block }}</option>
+                                    <option value="{{ $device->code_block }}">{{ $device->name_block }} - {{ $device->residential->name }}</option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback"></div>
@@ -70,7 +70,7 @@
                   @foreach ($residentialData as $residentialBlock)
                       <option value="{{ $residentialBlock->id }}">{{ $residentialBlock->name }}</option>
                   @endforeach
-              </select>                        
+              </select>
                 <div class="invalid-feedback"></div>
                 <label for="modalAddCard">Perumahan</label>
             </div>

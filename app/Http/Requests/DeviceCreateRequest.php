@@ -24,7 +24,7 @@ class DeviceCreateRequest extends FormRequest
         return [
             'guid' => ['required'],
             'code_block_residential'=> ['required'],
-            'house_number'=> ['required', 'min:3'],
+            'house_number'=> ['required'],
             'status'=> ['required'],
             'access' => ['required'],
         ];

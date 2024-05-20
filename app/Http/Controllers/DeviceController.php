@@ -10,27 +10,32 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use App\Models\Device;
 use App\Models\ResidentialBlock;
+use App\Models\Residential;
+use Illuminate\Support\Facades\Log;
 
 class DeviceController extends Controller
 {
     public function index()
     {
-        $deviceData = ResidentialBlock::all();
+        $deviceData = ResidentialBlock::with('residential')->get();
 
         return view('device.index', compact('deviceData'));
     }
 
     public function dataTable(): JsonResponse
     {
-        $data = Device::with('residentialblock')->get();
+        $data = Device::with('residentialblock.residential')->get();
 
         return DataTables::of($data)
             ->addColumn('aksi', function ($row) {
-                return " <a href='#' data-id='$row->id' class='mdi mdi-pencil text-warning btn-edit'></a>
-            <a href='#' data-id='$row->id' class='mdi mdi-trash-can text-danger btn-delete'></a>";
+                return " <a href='#' data-id='$row->guid' class='mdi mdi-pencil text-warning btn-edit'></a>
+            <a href='#' data-id='$row->guid' class='mdi mdi-trash-can text-danger btn-delete'></a>";
             })
             ->addColumn('code_block_residential', function (Device $device) {
                 return $device->residentialblock->name_block;
+            })
+            ->addColumn('name_residential', function (Device $device) {
+                return $device->residentialblock->residential->name;
             })
 
             ->rawColumns(['aksi'])
@@ -57,7 +62,7 @@ class DeviceController extends Controller
 
     public function show($id): JsonResponse
     {
-        $device = Device::find($id);
+        $device = Device::where('guid', $id)->first();
 
         if (!$device) {
             return response()->json(['message' => 'Data perumahan tidak ditemukan'], 404);
@@ -66,14 +71,16 @@ class DeviceController extends Controller
         return response()->json($device);
     }
 
-    public function update(DeviceUpdateRequest $request, $id): JsonResponse
+    public function update(DeviceUpdateRequest $request, $guid): JsonResponse
     {
 
-        $device = Device::find($id);
+        $device = Device::where('guid', $guid)->first();
+        Log::info('Device updated successfully for GUID: ' . $request->house_number);
 
         if (!$device) {
             return response()->json(['message' => 'Data tidak ditemukan'], 404);
         }
+
 
         $device->guid = $request->guid;
         $device->code_block_residential = $request->code_block_residential;

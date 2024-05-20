@@ -12,6 +12,10 @@ const formConfig = {
             name: 'Guid'
         },
         {
+            id: 'name_residential',
+            name: 'Nama Perumahan'
+        },
+        {
             id: 'code_block_residential',
             name: 'Nama Blok'
         },
@@ -44,6 +48,7 @@ const getInitData = () => {
             //     }
             // },
             {data: 'guid', name: 'guid'},
+            {data: 'name_residential', name: 'name_residential'},
             {data: 'code_block_residential', name: 'code_block_residential'},
             {data: 'house_number', name: 'house_number'},
             {data: 'status', name: 'status'},
@@ -74,8 +79,8 @@ $(function () {
 })
 
 submitButton.on('click', function () {
-    const id = $('#id').val()
-    $(this).text().toLowerCase() === "ubah" ? update(id) : store()
+    const guid = $('#guid').val()
+    $(this).text().toLowerCase() === "ubah" ? update(guid) : store()
 })
 const store = () => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -100,12 +105,12 @@ const store = () => {
     });
 }
 
-const update = id => {
+const update = guid => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
     const formData = dataForm();
 
     $.ajax({
-        url: `${deviceUrl}/${id}`,
+        url: `${deviceUrl}/${guid}`,
         method: 'PUT',
         dataType: 'json',
         data: formData,
@@ -168,7 +173,7 @@ $(document).on('click', '.btn-edit', function () {
             $('#id').val(res.id);
             submitButton.text('Ubah');
             modalTitle.text('Ubah Blok Perumahan');
-            
+
             $.each(res, function(key, value) {
                 $(`#${key}`).val(value);
             });

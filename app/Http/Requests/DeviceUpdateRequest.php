@@ -22,11 +22,11 @@ class DeviceUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'guid' => [''],
-            'code_block_residential'=> [''],
-            'house_number'=> ['', ''],
-            'status'=> [''],
-            'access' => [''],
+            'guid' => ['required'],
+            'code_block_residential'=> ['required'],
+            'house_number'=> ['required'],
+            'status'=> ['required'],
+            'access' => ['required'],
         ];
     }
 

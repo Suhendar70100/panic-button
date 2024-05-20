@@ -33,10 +33,10 @@ Route::middleware('auth:sanctum')->as('api.')->group(function () {
     // route device
     Route::get('/device', [DeviceController::class, 'dataTable'])->name('device.dataTable');
     Route::post('/device', [DeviceController::class, 'store'])->name('device.store');
-    Route::get('/device/{id}', [DeviceController::class, 'show'])->name('device.show');
-    Route::put('/device/{id}', [DeviceController::class, 'update'])->name('device.update');
-    Route::delete('/device/{id}', [DeviceController::class, 'delete'])->name('device.delete');
-    
+    Route::get('/device/{guid}', [DeviceController::class, 'show'])->name('device.show');
+    Route::put('/device/{guid}', [DeviceController::class, 'update'])->name('device.update');
+    Route::delete('/device/{guid}', [DeviceController::class, 'delete'])->name('device.delete');
+
 });
 
 

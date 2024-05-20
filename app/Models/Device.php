@@ -10,7 +10,7 @@ class Device extends Model
     use HasFactory;
 
     protected $table = 'device';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'guid';
     protected $keyType = 'string';
     public $timestamps = true;
     public $incrementing = false;
@@ -26,7 +26,7 @@ class Device extends Model
     public function residentialBlock()
     {
         return $this->belongsTo(ResidentialBlock::class, 'code_block_residential', 'code_block');
-    }   
+    }
     public function histroyButtons()
     {
         return $this->hasMany(HistoryButton::class, 'guid', 'guid');
