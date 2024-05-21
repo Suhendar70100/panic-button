@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('guid', 20);
             $table->boolean('state');
-            $table->integer('time');
+            $table->date('date');
+            $table->time('time');
             $table->timestamps();
 
             $table->foreign('guid')->references('guid')->on('device');

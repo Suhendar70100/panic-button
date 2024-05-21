@@ -10,10 +10,12 @@
                     <thead>
                     <tr>
                         <th>GUID</th>
+                        <th>Nama Perumahan</th>
                         <th>Nama Blok</th>
                         <th>Nomor Rumah</th>
+                        <th>Tanggal</th>
+                        <th>Jam</th>
                         <th>State</th>
-                        <th>Time</th>
                     </tr>
                     </thead>
                     <tbody>
