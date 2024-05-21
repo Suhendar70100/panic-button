@@ -16,8 +16,9 @@ $(document).ready(function() {
                 { data: 'residential_name', name: 'residential_name' },
                 { data: 'residential_block', name: 'residential_block.name_block' },
                 { data: 'house_number', name: 'house_number' },
+                { data: 'date', name: 'histroyButtons.date' },
+                { data: 'time', name: 'histroyButtons.time' },
                 { data: 'state', name: 'histroyButtons.state' },
-                { data: 'time', name: 'histroyButtons.time' }
             ],
             initComplete: function() {
                 $('.dt-column-search thead tr').clone(true).appendTo('.dt-column-search thead');
@@ -66,7 +67,7 @@ function getUniqueColumnOptions(columnIndex) {
 $(document).ready(function() {
     let dateInput = document.createElement('input');
     $(dateInput).addClass('form-control').attr('type', 'text').attr('id', 'daterange') .attr('placeholder', 'Pilih Rentang Tanggal').appendTo('.card-datatable .dataTables_filter');
-    
+
     $(dateInput).daterangepicker({
         autoUpdateInput: false,
         locale: {

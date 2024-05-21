@@ -26,18 +26,18 @@ class HistoryButtonController extends Controller
     {
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
-    
+
         $query = HistoryButton::with(['device.residentialBlock.residential']);
-    
+
         if ($startDate && $endDate) {
             $startDate = Carbon::parse($startDate)->startOfDay();
             $endDate = Carbon::parse($endDate)->endOfDay();
-    
+
             $query->whereBetween('created_at', [$startDate, $endDate]);
         }
-    
+
         $data = $query->get();
-    
+
         $formattedData = [];
         foreach ($data as $historyButton) {
             $device = $historyButton->device;
@@ -45,19 +45,20 @@ class HistoryButtonController extends Controller
             $residentialName = $residentialBlock && $residentialBlock->residential ? $residentialBlock->residential->name : null;
             $residentialBlockName = $residentialBlock ? $residentialBlock->name_block : null;
             $houseNumber = $device ? $device->house_number : null;
-    
+
             $formattedData[] = [
                 'guid' => $historyButton->guid,
                 'residential_name' => $residentialName,
                 'residential_block' => $residentialBlockName,
                 'house_number' => $houseNumber,
-                'state' => $historyButton->state,
+                'date' => $historyButton->date,
                 'time' => $historyButton->time,
+                'state' => $historyButton->state,
             ];
         }
-    
+
         return response()->json($formattedData);
     }
-    
+
 
 }
