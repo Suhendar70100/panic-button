@@ -28,8 +28,8 @@ class DeviceController extends Controller
 
         return DataTables::of($data)
             ->addColumn('aksi', function ($row) {
-                return " <a href='#' data-id='$row->guid' class='mdi mdi-pencil text-warning btn-edit'></a>
-            <a href='#' data-id='$row->guid' class='mdi mdi-trash-can text-danger btn-delete'></a>";
+                return " <a href='#' data-id='$row->id' class='mdi mdi-pencil text-warning btn-edit'></a>
+            <a href='#' data-id='$row->id' class='mdi mdi-trash-can text-danger btn-delete'></a>";
             })
             ->addColumn('code_block_residential', function (Device $device) {
                 return $device->residentialblock->name_block;
@@ -62,7 +62,7 @@ class DeviceController extends Controller
 
     public function show($id): JsonResponse
     {
-        $device = Device::where('guid', $id)->first();
+        $device = Device::find($id);
 
         if (!$device) {
             return response()->json(['message' => 'Data perumahan tidak ditemukan'], 404);
@@ -71,16 +71,14 @@ class DeviceController extends Controller
         return response()->json($device);
     }
 
-    public function update(DeviceUpdateRequest $request, $guid): JsonResponse
+    public function update(DeviceUpdateRequest $request, $id): JsonResponse
     {
 
-        $device = Device::where('guid', $guid)->first();
-        Log::info('Device updated successfully for GUID: ' . $request->house_number);
+        $device = Device::find($id);
 
         if (!$device) {
             return response()->json(['message' => 'Data tidak ditemukan'], 404);
         }
-
 
         $device->guid = $request->guid;
         $device->code_block_residential = $request->code_block_residential;

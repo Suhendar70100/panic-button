@@ -10,7 +10,7 @@ class Device extends Model
     use HasFactory;
 
     protected $table = 'device';
-    protected $primaryKey = 'guid';
+    protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $timestamps = true;
     public $incrementing = false;

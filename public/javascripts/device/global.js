@@ -79,8 +79,8 @@ $(function () {
 })
 
 submitButton.on('click', function () {
-    const guid = $('#guid').val()
-    $(this).text().toLowerCase() === "ubah" ? update(guid) : store()
+    const id = $('#id').val()
+    $(this).text().toLowerCase() === "ubah" ? update(id) : store()
 })
 const store = () => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -105,12 +105,12 @@ const store = () => {
     });
 }
 
-const update = guid => {
+const update = id => {
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
     const formData = dataForm();
 
     $.ajax({
-        url: `${deviceUrl}/${guid}`,
+        url: `${deviceUrl}/${id}`,
         method: 'PUT',
         dataType: 'json',
         data: formData,
