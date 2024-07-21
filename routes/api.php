@@ -8,6 +8,7 @@ use App\Http\Controllers\ResidentialController;
 use App\Http\Controllers\HistoryButtonController;
 use App\Http\Controllers\ResidentialBlockController;
 use App\Http\Controllers\DeviceActivityController;
+use App\Http\Controllers\UserController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -38,6 +39,13 @@ Route::middleware('auth:sanctum')->as('api.')->group(function () {
     Route::put('/device/{id}', [DeviceController::class, 'update'])->name('device.update');
     Route::delete('/device/{id}', [DeviceController::class, 'delete'])->name('device.delete');
     Route::get('/device-activity', [DeviceActivityController::class, 'dataTable'])->name('deviceActivity.dataTable');
+
+    // route device
+    Route::get('/manage-user', [UserController::class, 'dataTable'])->name('user.dataTable');
+    Route::post('/manage-user', [UserController::class, 'store'])->name('user.store');
+    Route::get('/manage-user/{id}', [UserController::class, 'show'])->name('user.show');
+    Route::put('/manage-user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/manage-user/{id}', [UserController::class, 'delete'])->name('user.delete');
 
 });
 

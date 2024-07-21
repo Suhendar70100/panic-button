@@ -25,6 +25,10 @@ class DeviceController extends Controller
     public function dataTable(): JsonResponse
     {
         $data = Device::with('residentialblock.residential')->get();
+        $data->map(function ($item) {
+            $item->access = $item->access == 1 ? 'Bebaskan' : 'Batasi';
+            return $item;
+        });
 
         return DataTables::of($data)
             ->addColumn('aksi', function ($row) {

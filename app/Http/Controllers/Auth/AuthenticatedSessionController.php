@@ -25,11 +25,11 @@ class AuthenticatedSessionController extends Controller
     public function store(Request $request)
 {
     $request->validate([
-        'email' => 'required|email',
+        'username' => 'required',
         'password' => 'required',
     ]);
 
-    $credentials = $request->only('email', 'password');
+    $credentials = $request->only('username', 'password');
 
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
@@ -38,7 +38,7 @@ class AuthenticatedSessionController extends Controller
     }
 
     return back()->withErrors([
-        'email' => 'Email atau password anda salah.',
+        'username' => 'Username atau password anda salah.',
     ]);
 }
 

@@ -53,8 +53,8 @@
                             <p class="invalid-feedback"></p>
                             <select id="access" class="form-control">
                                 <option value="">Pilih Akses</option>
-                                <option value="0">Non-Aktif</option>
-                                <option value="1">Aktif</option>
+                                <option value="0">Batasi</option>
+                                <option value="1">Bebaskan</option>
                             </select>
                             <div class="invalid-feedback"></div>
                             <label for="modalAddCard">Akses</label>

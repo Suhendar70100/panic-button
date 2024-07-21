@@ -64,6 +64,13 @@
             </a>
         </li>
 
+        <li class="menu-item @if (Request::is('history-button')) active @endif ">
+            <a href="{{ route('user.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-account"></i>
+                <div>User</div>
+            </a>
+        </li>
+
         <li class="menu-item">
             <a href="" class="menu-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="menu-icon tf-icons mdi mdi-logout"></i>
