@@ -29,7 +29,7 @@
                 <div>Dashboard</div>
             </a>
         </li>
-        
+
         <li class="menu-item  @if(in_array(Request::getRequestUri(),['/residential', '/residential-block'])) active open @endif ">
             <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
                 <i class="menu-icon tf-icons mdi mdi-cog"></i>
@@ -48,7 +48,7 @@
                 </li>
             </ul>
         </li>
-        
+
 
         <li class="menu-item @if (Request::is('device')) active @endif">
             <a href="{{ route('device.index') }}" class="menu-link">
@@ -58,9 +58,9 @@
         </li>
 
         <li class="menu-item @if (Request::is('history-button')) active @endif ">
-            <a href="{{ route('history.index') }}" class="menu-link">
+            <a href="{{ route('deviceActivity.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-history"></i>
-                <div>Riwayat Tombol</div>
+                <div>Aktivitas Perangkat</div>
             </a>
         </li>
 

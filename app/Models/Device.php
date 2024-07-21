@@ -11,24 +11,24 @@ class Device extends Model
 
     protected $table = 'device';
     protected $primaryKey = 'id';
-    protected $keyType = 'string';
     public $timestamps = true;
-    public $incrementing = false;
+    public $incrementing = true;
 
     protected $fillable = [
-        'guid',
-        'code_block_residential',
+        'code_device',
+        'id_residential_block',
+        'owner_device',
         'house_number',
-        'status',
         'access',
     ];
 
     public function residentialBlock()
     {
-        return $this->belongsTo(ResidentialBlock::class, 'code_block_residential', 'code_block');
+        return $this->belongsTo(ResidentialBlock::class, 'id_residential_block');
     }
-    public function histroyButtons()
+
+    public function activities()
     {
-        return $this->hasMany(HistoryButton::class, 'guid', 'guid');
+        return $this->hasMany(DeviceActivity::class, 'id_device', 'id');
     }
 }

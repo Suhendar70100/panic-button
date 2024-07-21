@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResidentialController;
 use App\Http\Controllers\HistoryButtonController;
 use App\Http\Controllers\ResidentialBlockController;
+use App\Http\Controllers\DeviceActivityController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -28,7 +29,7 @@ Route::middleware('auth:sanctum')->as('api.')->group(function () {
     Route::delete('/residential-block/{id}', [ResidentialBlockController::class, 'delete'])->name('residentialblock.delete');
 
     // route history button
-    Route::get('/history-button', [HistoryButtonController::class, 'dataTable'])->name('history.dataTable');
+    // Route::get('/history-button', [HistoryButtonController::class, 'dataTable'])->name('history.dataTable');
 
     // route device
     Route::get('/device', [DeviceController::class, 'dataTable'])->name('device.dataTable');
@@ -36,6 +37,7 @@ Route::middleware('auth:sanctum')->as('api.')->group(function () {
     Route::get('/device/{id}', [DeviceController::class, 'show'])->name('device.show');
     Route::put('/device/{id}', [DeviceController::class, 'update'])->name('device.update');
     Route::delete('/device/{id}', [DeviceController::class, 'delete'])->name('device.delete');
+    Route::get('/device-activity', [DeviceActivityController::class, 'dataTable'])->name('deviceActivity.dataTable');
 
 });
 

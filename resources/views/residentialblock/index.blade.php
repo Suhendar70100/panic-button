@@ -15,6 +15,7 @@
                 <table class="table table-bordered dataTable">
                     <thead>
                     <tr>
+                        <th>NO.</th>
                         <th>Kode Blok</th>
                         <th>Nama Blok</th>
                         <th>Perumahan</th>

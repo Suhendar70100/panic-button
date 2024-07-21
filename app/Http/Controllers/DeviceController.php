@@ -17,9 +17,9 @@ class DeviceController extends Controller
 {
     public function index()
     {
-        $deviceData = ResidentialBlock::with('residential')->get();
+        $residentialBlockData = ResidentialBlock::with('residential')->get();
 
-        return view('device.index', compact('deviceData'));
+        return view('device.index', compact('residentialBlockData'));
     }
 
     public function dataTable(): JsonResponse
@@ -31,7 +31,7 @@ class DeviceController extends Controller
                 return " <a href='#' data-id='$row->id' class='mdi mdi-pencil text-warning btn-edit'></a>
             <a href='#' data-id='$row->id' class='mdi mdi-trash-can text-danger btn-delete'></a>";
             })
-            ->addColumn('code_block_residential', function (Device $device) {
+            ->addColumn('name_residential_block', function (Device $device) {
                 return $device->residentialblock->name_block;
             })
             ->addColumn('name_residential', function (Device $device) {
@@ -80,10 +80,10 @@ class DeviceController extends Controller
             return response()->json(['message' => 'Data tidak ditemukan'], 404);
         }
 
-        $device->guid = $request->guid;
-        $device->code_block_residential = $request->code_block_residential;
+        $device->code_device = $request->code_device;
+        $device->id_residential_block = $request->id_residential_block;
+        $device->owner_device = $request->owner_device;
         $device->house_number = $request->house_number;
-        $device->status = $request->status;
         $device->access = $request->access;
         $device->save();
 

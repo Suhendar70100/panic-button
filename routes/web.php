@@ -6,6 +6,7 @@ use App\Http\Controllers\ResidentialController;
 use App\Http\Controllers\HistoryButtonController;
 use App\Http\Controllers\ResidentialBlockController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\DeviceActivityController;
 
 Route::get('/', function () {
     return view('dashboard.index');
@@ -17,9 +18,11 @@ Route::middleware('auth')->group(function () {
     // route residential block
     Route::get('/residential-block', [ResidentialBlockController::class, 'index'])->name('residentialblock.index');
     // route hystory button
-    Route::get('/history-button', [HistoryButtonController::class, 'index'])->name('history.index');
+    // Route::get('/history-button', [HistoryButtonController::class, 'index'])->name('history.index');
     // Route device
     Route::get('/device', [DeviceController::class, 'index'])->name('device.index');
+    // route hystory button
+    Route::get('/device-activity', [DeviceActivityController::class, 'index'])->name('deviceActivity.index');
 
 });
 

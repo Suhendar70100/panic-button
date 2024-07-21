@@ -30,13 +30,13 @@ const getInitData = () => {
         serverSide: true,
         ajax: residentialUrl,
         columns: [
-            // {
-            //     "orderable": false,
-            //     "searchable": false,
-            //     "render": function (data, type, row, meta) {
-            //         return meta.row + meta.settings._iDisplayStart + 1;
-            //     }
-            // },
+            {
+                "orderable": false,
+                "searchable": false,
+                "render": function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
             {data: 'code_block', name: 'code_block'},
             {data: 'name_block', name: 'name_block'},
             {data: 'perumahan', name: 'perumahan'},
@@ -150,7 +150,7 @@ $(document).on('click', '.btn-edit', function () {
             $('#id').val(res.id);
             submitButton.text('Ubah');
             modalTitle.text('Ubah Blok Perumahan');
-            
+
             $.each(res, function(key, value) {
                 $(`#${key}`).val(value);
             });

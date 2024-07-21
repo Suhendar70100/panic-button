@@ -8,24 +8,20 @@ const submitButton = $('#submit-button')
 const formConfig = {
     fields: [
         {
-            id: 'guid',
-            name: 'Guid'
+            id: 'code_device',
+            name: 'Kode Perangkat'
         },
         {
-            id: 'name_residential',
-            name: 'Nama Perumahan'
+            id: 'owner_device',
+            name: 'Nama Pemilik'
         },
         {
-            id: 'code_block_residential',
+            id: 'id_residential_block',
             name: 'Nama Blok'
         },
         {
             id: 'house_number',
             name: 'Nama Perumahan'
-        },
-        {
-            id: 'status',
-            name: 'Status'
         },
         {
             id: 'access',
@@ -40,18 +36,18 @@ const getInitData = () => {
         serverSide: true,
         ajax: deviceUrl,
         columns: [
-            // {
-            //     "orderable": false,
-            //     "searchable": false,
-            //     "render": function (data, type, row, meta) {
-            //         return meta.row + meta.settings._iDisplayStart + 1;
-            //     }
-            // },
-            {data: 'guid', name: 'guid'},
+            {
+                "orderable": false,
+                "searchable": false,
+                "render": function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {data: 'code_device', name: 'code_device'},
+            {data: 'owner_device', name: 'owner_device'},
             {data: 'name_residential', name: 'name_residential'},
-            {data: 'code_block_residential', name: 'code_block_residential'},
+            {data: 'name_residential_block', name: 'name_residential_block'},
             {data: 'house_number', name: 'house_number'},
-            {data: 'status', name: 'status'},
             {data: 'access', name: 'access'},
             {data: 'aksi', name: 'aksi'},
         ]
@@ -66,7 +62,7 @@ const resetForm = () => formConfig.fields.forEach(({id}) => $(`#${id}`).val(''))
 
 $(function () {
     addButton.on('click', function () {
-        modalTitle.text('Tambah Perangkat Perumahan')
+        modalTitle.text('Tambah Perangkat')
         submitButton.text('Tambah')
         resetForm()
         $('#addDeviceButton').modal('show');
@@ -131,18 +127,18 @@ const update = id => {
 
 const dataForm = () => {
     console.log({
-        guid: $('#guid').val(),
-        code_block_residential: $('#code_block_residential').val(),
+        code_device: $('#code_device').val(),
+        id_residential_block: $('#id_residential_block').val(),
+        owner_device: $('#owner_device').val(),
         house_number: $('#house_number').val(),
-        status: $('#status').val(),
         access: $('#access').val(),
     });
 
     return {
-        guid: $('#guid').val(),
-        code_block_residential: $('#code_block_residential').val(),
+        code_device: $('#code_device').val(),
+        id_residential_block: $('#id_residential_block').val(),
+        owner_device: $('#owner_device').val(),
         house_number: $('#house_number').val(),
-        status: $('#status').val(),
         access: $('#access').val(),
     };
 
@@ -172,7 +168,7 @@ $(document).on('click', '.btn-edit', function () {
         success: res => {
             $('#id').val(res.id);
             submitButton.text('Ubah');
-            modalTitle.text('Ubah Blok Perumahan');
+            modalTitle.text('Ubah Perangkat');
 
             $.each(res, function(key, value) {
                 $(`#${key}`).val(value);
@@ -222,13 +218,6 @@ $(document).on('click', '.btn-delete', function () {
     });
 });
 
-$(document).ready(function() {
-    $('#status').on('change', function() {
-        var selectedValue = $(this).val();
-        $('#status').val(selectedValue);
-        console.log('Nilai yang dipilih:', selectedValue);
-    });
-});
 
 $(document).ready(function() {
     $('#access').on('change', function() {

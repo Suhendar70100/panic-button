@@ -22,10 +22,10 @@ class DeviceCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'guid' => ['required'],
-            'code_block_residential'=> ['required'],
+            'code_device' => ['required'],
+            'id_residential_block'=> ['required'],
+            'owner_device' => ['required'],
             'house_number'=> ['required'],
-            'status'=> ['required'],
             'access' => ['required'],
         ];
     }
@@ -38,11 +38,11 @@ class DeviceCreateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'guid.required' => 'Guid Harus diisi',
-            'code_block_residential.required' => 'Kode Blok Perumahan Harus diisi',
+            'code_device.required' => 'Kode Harus diisi',
+            'id_residential_block.required' => 'Kode Blok Perumahan Harus diisi',
             'house_number.required' => 'Nomor Perumahan Harus diisi',
+            'owner_device.required' => 'Nama Pemilik Harus memiliki :min karakter',
             'house_number.min' => 'Nomor Perumahan Harus memiliki :min karakter',
-            'status.required' => 'Status Harus diisi',
             'access.required' => 'Akses Harus diisi',
             // 'name_block.required' => 'Nama Blok Perumahan Harus diisi',
             // 'name_block.min' => 'Nama Blok Perumahan minimal harus memiliki :min karakter',

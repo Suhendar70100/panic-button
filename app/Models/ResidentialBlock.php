@@ -13,7 +13,7 @@ class ResidentialBlock extends Model
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     public $timestamps = true;
-    public $incrementing = false;
+    public $incrementing = true;
 
     protected $fillable = [
         'code_block',
@@ -28,6 +28,6 @@ class ResidentialBlock extends Model
 
     public function devices()
     {
-        return $this->hasMany(Device::class, 'code_block_residential', 'code_block');
+        return $this->hasMany(Device::class,'id_residential_block');
     }
 }
