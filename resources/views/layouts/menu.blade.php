@@ -29,26 +29,25 @@
                 <div>Dashboard</div>
             </a>
         </li>
-
+        @if(Auth::User()->role == 'Admin')
         <li class="menu-item  @if(in_array(Request::getRequestUri(),['/residential', '/residential-block'])) active open @endif ">
             <a href="javascript:void(0);" class="menu-link menu-toggle waves-effect">
-                <i class="menu-icon tf-icons mdi mdi-cog"></i>
-                <div>Pengaturan</div>
+                <i class="menu-icon tf-icons mdi mdi-city"></i>
+                <div>Perumahan</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item @if (Request::is('residential')) active @endif">
-                    <a href="{{ route('residential.index') }}" class="menu-link">
-                        <div>Perumahan</div>
-                    </a>
-                </li>
-                <li class="menu-item @if (Request::is('residential-block')) active @endif">
-                    <a href="{{ route('residentialblock.index') }}" class="menu-link">
-                        <div>Blok Perumahan</div>
-                    </a>
-                </li>
+            <a href="{{ route('residential.index') }}" class="menu-link">
+                <div>Nama Perumahan</div>
+            </a>
+        </li>
+        <li class="menu-item @if (Request::is('residential-block')) active @endif">
+            <a href="{{ route('residentialblock.index') }}" class="menu-link">
+                <div>Blok Perumahan</div>
+            </a>
+        </li>
             </ul>
         </li>
-
 
         <li class="menu-item @if (Request::is('device')) active @endif">
             <a href="{{ route('device.index') }}" class="menu-link">
@@ -56,20 +55,21 @@
                 <div>Perangkat</div>
             </a>
         </li>
-
+        @endif
         <li class="menu-item @if (Request::is('history-button')) active @endif ">
             <a href="{{ route('deviceActivity.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-history"></i>
                 <div>Aktivitas Perangkat</div>
             </a>
         </li>
-
+        @if(Auth::User()->role == 'Admin')
         <li class="menu-item @if (Request::is('history-button')) active @endif ">
             <a href="{{ route('user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-account"></i>
                 <div>User</div>
             </a>
         </li>
+        @endif
 
         <li class="menu-item">
             <a href="" class="menu-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

@@ -14,7 +14,12 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::middleware('auth:sanctum')->as('api.')->group(function () {
+Route::get('/device-activity', [DeviceActivityController::class, 'dataTable'])
+        ->name('deviceActivity.dataTable')
+        ->middleware('auth:sanctum');
+
+
+Route::middleware(['role.access:Admin,1'])->as('api.')->group(function () {
     // route residential
     Route::get('/residential', [ResidentialController::class, 'dataTable'])->name('residential.dataTable');
     Route::post('/residential', [ResidentialController::class, 'store'])->name('residential.store');
@@ -38,7 +43,6 @@ Route::middleware('auth:sanctum')->as('api.')->group(function () {
     Route::get('/device/{id}', [DeviceController::class, 'show'])->name('device.show');
     Route::put('/device/{id}', [DeviceController::class, 'update'])->name('device.update');
     Route::delete('/device/{id}', [DeviceController::class, 'delete'])->name('device.delete');
-    Route::get('/device-activity', [DeviceActivityController::class, 'dataTable'])->name('deviceActivity.dataTable');
 
     // route device
     Route::get('/manage-user', [UserController::class, 'dataTable'])->name('user.dataTable');
