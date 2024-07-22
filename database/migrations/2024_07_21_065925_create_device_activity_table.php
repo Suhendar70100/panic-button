@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_device');
             $table->string('button_condition', 10)->default('Ditekan');
             $table->datetime('created_at')->nullable();
+            $table->datetime('updated_at')->nullable();
 
             $table->foreign('id_device')->references('id')->on('device')->onDelete('cascade');
         });
