@@ -8,6 +8,8 @@ use VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Jobs\RabbitMQJob;
 use Illuminate\Support\Facades\Log;
 use App\Models\Device;
 use App\Models\DeviceActivity;
+use PhpMqtt\Client\Facades\MQTT;
+
 
 
 class SensorJob extends RabbitMQJob
@@ -41,6 +43,7 @@ class SensorJob extends RabbitMQJob
                 'created_at' => $data['time'],
             ]);
             $this->delete(); // Hapus job jika berhasil
+            MQTT::publish('webPublish', 'berhasil disimpan');
         } catch (\Exception $e) {
             Log::error('Error ketika menyimpan data ke tabel Device', [
                 'error' => $e->getMessage(),
@@ -48,6 +51,7 @@ class SensorJob extends RabbitMQJob
             ]);
             $this->delete(); // Hapus job jika berhasil
         }
+
     }
 
 

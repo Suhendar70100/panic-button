@@ -9,6 +9,7 @@
         "laravel/framework": "^11.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "php-mqtt/laravel-client": "^1.5",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^14.1",
         "yajra/laravel-datatables-oracle": "^11.1"
     },
