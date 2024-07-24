@@ -101,7 +101,7 @@
           <!-- /Logo -->
 
           <div class="card-body mt-2">
-            <h4 class="mb-2 fw-semibold">Welcome to Materialize! 👋</h4>
+            <h4 class="mb-2 fw-semibold">Selamat Datang di JagaWarga! 👋</h4>
             <p class="mb-4">Please sign-in to your account and start the adventure</p>
             @if ($errors->any())
             <div class="alert alert-danger">
@@ -134,7 +134,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
               </div>
             </form>
           </div>

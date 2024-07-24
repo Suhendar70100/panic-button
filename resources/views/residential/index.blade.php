@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold mb-4"><span class="text-muted fw-light">Pengaturan /</span> Perumahan</h4>
+        <h4 class="fw-bold mb-4"><span class="text-muted fw-light">Kelola /</span> Perumahan</h4>
         <!-- Column Search -->
         <div class="card">
             <div class="d-flex justify-content-between me-3 align-items-center">
