@@ -51,6 +51,15 @@
                     <div class="col-12">
                         <div class="form-floating form-floating-outline">
                             <p class="invalid-feedback"></p>
+                            <input id="phone" name="phone" class="form-control credit-card-mask"
+                                type="text" placeholder="Nomor HP" />
+                            <div class="invalid-feedback"></div>
+                            <label for="modalAddCard">Nomor HP</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating form-floating-outline">
+                            <p class="invalid-feedback"></p>
                             <select id="access" class="form-control">
                                 <option value="">Pilih Akses</option>
                                 <option value="0">Batasi</option>

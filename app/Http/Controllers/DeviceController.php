@@ -50,7 +50,10 @@ class DeviceController extends Controller
     {
         try {
             $data = $request->validated();
-            Device::query()->create($data);
+            Log::info($data['phone']);
+            $device = Device::query()->create($data);
+            $device->phone = $request->phone;
+            $device->save();
 
             return response()->json(
                 data: ['message' => 'Data berhasil di tambahkan'],
@@ -87,6 +90,7 @@ class DeviceController extends Controller
         $device->code_device = $request->code_device;
         $device->id_residential_block = $request->id_residential_block;
         $device->owner_device = $request->owner_device;
+        $device->phone = $request->phone;
         $device->house_number = $request->house_number;
         $device->access = $request->access;
         $device->save();

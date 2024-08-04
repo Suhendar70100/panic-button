@@ -21,6 +21,7 @@
                         <th>Perumahan</th>
                         <th>Blok</th>
                         <th>Nomor Rumah</th>
+                        <th>Nomor Telepon</th>
                         <th>Akses</th>
                         <th>Aksi</th>
                     </tr>

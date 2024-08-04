@@ -21,7 +21,11 @@ const formConfig = {
         },
         {
             id: 'house_number',
-            name: 'Nama Perumahan'
+            name: 'Nomor Rumah'
+        },
+        {
+            id: 'phone',
+            name: 'Nomor HP'
         },
         {
             id: 'access',
@@ -48,6 +52,7 @@ const getInitData = () => {
             {data: 'name_residential', name: 'name_residential'},
             {data: 'name_residential_block', name: 'name_residential_block'},
             {data: 'house_number', name: 'house_number'},
+            {data: 'phone', name: 'phone'},
             {data: 'access', name: 'access'},
             {data: 'aksi', name: 'aksi'},
         ]
@@ -130,6 +135,7 @@ const dataForm = () => {
         code_device: $('#code_device').val(),
         id_residential_block: $('#id_residential_block').val(),
         owner_device: $('#owner_device').val(),
+        phone: $('#phone').val(),
         house_number: $('#house_number').val(),
         access: $('#access').val(),
     });
@@ -138,6 +144,7 @@ const dataForm = () => {
         code_device: $('#code_device').val(),
         id_residential_block: $('#id_residential_block').val(),
         owner_device: $('#owner_device').val(),
+        phone: $('#phone').val(),
         house_number: $('#house_number').val(),
         access: $('#access').val(),
     };

@@ -25,6 +25,7 @@ class DeviceUpdateRequest extends FormRequest
             'code_device' => ['required'],
             'id_residential_block'=> ['required'],
             'owner_device' => ['required'],
+            'phone' => ['required'],
             'house_number'=> ['required'],
             'access' => ['required'],
         ];

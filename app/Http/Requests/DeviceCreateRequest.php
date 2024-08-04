@@ -25,6 +25,7 @@ class DeviceCreateRequest extends FormRequest
             'code_device' => ['required'],
             'id_residential_block'=> ['required'],
             'owner_device' => ['required'],
+            'phone'=> ['required'],
             'house_number'=> ['required'],
             'access' => ['required'],
         ];
@@ -42,6 +43,8 @@ class DeviceCreateRequest extends FormRequest
             'id_residential_block.required' => 'Kode Blok Perumahan Harus diisi',
             'house_number.required' => 'Nomor Perumahan Harus diisi',
             'owner_device.required' => 'Nama Pemilik Harus memiliki :min karakter',
+            'phone.required' => 'Nomor handpone harus disis',
+            'house_number.min' => 'Nomor Perumahan Harus memiliki :min karakter',
             'house_number.min' => 'Nomor Perumahan Harus memiliki :min karakter',
             'access.required' => 'Akses Harus diisi',
             // 'name_block.required' => 'Nama Blok Perumahan Harus diisi',
