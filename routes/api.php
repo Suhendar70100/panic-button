@@ -14,9 +14,9 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/device-activity', [DeviceActivityController::class, 'dataTable'])
-        ->name('deviceActivity.dataTable')
-        ->middleware('auth:sanctum');
+// Route::get('/device-activity', [DeviceActivityController::class, 'dataTable'])
+//         ->name('deviceActivity.dataTable')
+//         ->middleware('auth:sanctum');
 
 
 Route::middleware(['role.access:Admin,1'])->as('api.')->group(function () {

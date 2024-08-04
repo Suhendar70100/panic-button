@@ -52,7 +52,7 @@
                         <div class="form-floating form-floating-outline">
                             <p class="invalid-feedback"></p>
                             <input id="phone" name="phone" class="form-control credit-card-mask"
-                                type="text" placeholder="Nomor HP" />
+                                type="number" placeholder="Nomor HP" />
                             <div class="invalid-feedback"></div>
                             <label for="modalAddCard">Nomor HP</label>
                         </div>

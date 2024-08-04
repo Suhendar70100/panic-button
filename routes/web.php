@@ -8,6 +8,7 @@ use App\Http\Controllers\ResidentialBlockController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DeviceActivityController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmergencyStateController;
 
 Route::get('/', function () {
     return view('dashboard.index');
@@ -15,7 +16,8 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     // route device activity
-    Route::get('/device-activity', [DeviceActivityController::class, 'index'])->name('deviceActivity.index');
+    // Route::get('/device-activity', [DeviceActivityController::class, 'index'])->name('deviceActivity.index');
+    Route::get('/emergency-state', [EmergencyStateController::class, 'index'])->name('emergencyState.index');
 });
 
 Route::middleware(['role.access:Admin,1'])->group(function () {

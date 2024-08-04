@@ -56,10 +56,16 @@
             </a>
         </li>
         @endif
+        <li class="menu-item @if (Request::is('emergency-state')) active @endif ">
+            <a href="{{ route('emergencyState.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-alert"></i>
+                <div>Keadaan Darurat</div>
+            </a>
+        </li>
         <li class="menu-item @if (Request::is('history-button')) active @endif ">
-            <a href="{{ route('deviceActivity.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons mdi mdi-history"></i>
-                <div>Aktivitas Perangkat</div>
+            <a href="" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-clipboard-text"></i>
+                <div>Laporan</div>
             </a>
         </li>
         @if(Auth::User()->role == 'Admin')
