@@ -9,6 +9,7 @@ use App\Http\Controllers\HistoryButtonController;
 use App\Http\Controllers\ResidentialBlockController;
 use App\Http\Controllers\DeviceActivityController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmergencyReportController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -17,6 +18,22 @@ Route::get('/user', function (Request $request) {
 // Route::get('/device-activity', [DeviceActivityController::class, 'dataTable'])
 //         ->name('deviceActivity.dataTable')
 //         ->middleware('auth:sanctum');
+
+Route::get('/emergency-report', [EmergencyReportController::class, 'dataTable'])
+        ->name('EmergencyReport.dataTable')
+        ->middleware('auth:sanctum');
+Route::post('/emergency-report', [EmergencyReportController::class, 'store'])
+        ->name('EmergencyReport.store')
+        ->middleware('auth:sanctum');
+Route::get('/emergency-report/{id}', [EmergencyReportController::class, 'show'])
+        ->name('EmergencyReport.show')
+        ->middleware('auth:sanctum');
+Route::put('/emergency-report/{id}', [EmergencyReportController::class, 'update'])
+        ->name('EmergencyReport.update')
+        ->middleware('auth:sanctum');
+Route::delete('/emergency-report/{id}', [EmergencyReportController::class, 'delete'])
+        ->name('EmergencyReport.delete')
+        ->middleware('auth:sanctum');
 
 
 Route::middleware(['role.access:Admin,1'])->as('api.')->group(function () {

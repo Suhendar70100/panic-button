@@ -62,8 +62,8 @@
                 <div>Keadaan Darurat</div>
             </a>
         </li>
-        <li class="menu-item @if (Request::is('history-button')) active @endif ">
-            <a href="" class="menu-link">
+        <li class="menu-item @if (Request::is('emergency-report')) active @endif ">
+            <a href="{{ route('emergencyReport.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-clipboard-text"></i>
                 <div>Laporan</div>
             </a>
