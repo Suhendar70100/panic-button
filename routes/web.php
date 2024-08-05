@@ -10,10 +10,9 @@ use App\Http\Controllers\DeviceActivityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmergencyStateController;
 use App\Http\Controllers\EmergencyReportController;
+use App\Http\Controllers\DashboardController;
 
-Route::get('/', function () {
-    return view('dashboard.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     // route device activity

@@ -16,7 +16,7 @@ class ResidentialBlockController extends Controller
     public function index()
     {
         $residentialData = Residential::all();
-    
+
         return view('residentialblock.index', compact('residentialData'));
     }
     public function dataTable(): JsonResponse
@@ -40,12 +40,12 @@ class ResidentialBlockController extends Controller
         try {
             $data = $request->validated();
             ResidentialBlock::create($data);
-    
+
             return response()->json(
                 ['message' => 'Data berhasil ditambahkan'],
                 201
             );
-    
+
         } catch (Exception $exception) {
             return response()->json(
                 ['message' => $exception->getMessage()],
@@ -71,19 +71,19 @@ class ResidentialBlockController extends Controller
                 $residentialBlock = ResidentialBlock::find($code_block);
                 $data = $request->validated();
                 $residentialBlock->update($data);
-    
+
                 return response()->json(
                     data: ['message' => 'Data berhasil di ubah'],
                     status: 201
                 );
-    
+
             } catch (Exception $exception) {
                 return response()->json(
                     data: ['message' => $exception->getMessage()],
                     status: 400
                 );
             }
-    
+
     }
 
     public function delete($id): JsonResponse

@@ -12,7 +12,7 @@
                         </div>
                         <div class="d-flex align-items-center">
                             <small class="me-2">Total keseluruhan perumahan dan blok</small>
-                          </div>
+                        </div>
                       </div>
                       <div class="card-body d-flex justify-content-between flex-wrap gap-3">
                         <div class="d-flex gap-3">
@@ -22,7 +22,7 @@
                                 </div>
                             </div>
                             <div class="card-info">
-                                <h4 class="mb-0">8,458</h4>
+                                <h4 class="mb-0">{{ $residentialCount }}</h4>
                                 <small class="text-muted">Perumahan</small>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="card-info">
-                                <h4 class="mb-0">$28.5k</h4>
+                                <h4 class="mb-0">{{ $residentialBlockCount }}</h4>
                                 <small class="text-muted">Blok Perumahan</small>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
         <div class="d-flex justify-content-between flex-wrap gap-2">
           <p class="d-block mb-2 text-muted">Total Perangkat</p>
         </div>
-        <h4 class="mb-1">$42.5k</h4>
+        <h4 class="mb-1">{{ $deviceCount->total_count }}</h4>
       </div>
       <div class="card-body">
         <div class="row mt-3">
@@ -56,12 +56,12 @@
             <div class="d-flex gap-2 align-items-center mb-2">
               <div class="avatar avatar-xs flex-shrink-0">
                 <div class="avatar-initial rounded bg-label-warning">
-                  <i class="mdi mdi-cellphone mdi-14px"></i>
+                  <i class="mdi mdi-checkbox-marked mdi-14px"></i>
                 </div>
               </div>
               <p class="mb-0 text-muted">Dibebaskan</p>
             </div>
-            <h4 class="mb-0 pt-1 text-nowrap">23.5%</h4>
+            <h4 class="mb-0 pt-1 text-nowrap">{{ $deviceCount->active_count }}</h4>
           </div>
           <div class="col-4">
             <div class="divider divider-vertical">
@@ -75,18 +75,18 @@
               <p class="mb-0 text-muted">Dibatasi</p>
               <div class="avatar avatar-xs flex-shrink-0">
                 <div class="avatar-initial rounded bg-label-primary">
-                  <i class="mdi mdi-monitor mdi-14px"></i>
+                  <i class="mdi mdi-close-box mdi-14px"></i>
                 </div>
               </div>
             </div>
-            <h4 class="mb-0 pt-1 text-nowrap">76.5%</h4>
+            <h4 class="mb-0 pt-1 text-nowrap">{{ $deviceCount->inactive_count }}</h4>
           </div>
         </div>
         <div class="d-flex align-items-center mt-2 pt-1">
           <div class="progress w-100 rounded" style="height: 10px">
             <div
               class="progress-bar bg-warning"
-              style="width: 20%"
+              style="width: {{ $deviceActivePercentage }}%"
               role="progressbar"
               aria-valuenow="20"
               aria-valuemin="0"
@@ -94,7 +94,7 @@
             <div
               class="progress-bar bg-danger"
               role="progressbar"
-              style="width: 80%"
+              style="width: {{ $deviceInactivePercentage }}%"
               aria-valuenow="80"
               aria-valuemin="0"
               aria-valuemax="100"></div>
@@ -112,7 +112,7 @@
         <div class="d-flex justify-content-between flex-wrap gap-2">
           <p class="d-block mb-2 text-muted">Total User</p>
         </div>
-        <h4 class="mb-1">$42.5k</h4>
+        <h4 class="mb-1">{{ $userCount->total_count }}</h4>
       </div>
       <div class="card-body">
         <div class="row mt-3">
@@ -120,12 +120,12 @@
             <div class="d-flex gap-2 align-items-center mb-2">
               <div class="avatar avatar-xs flex-shrink-0">
                 <div class="avatar-initial rounded bg-label-warning">
-                  <i class="mdi mdi-cellphone mdi-14px"></i>
+                  <i class="mdi mdi-account-check mdi-14px"></i>
                 </div>
               </div>
               <p class="mb-0 text-muted">Dibebaskan</p>
             </div>
-            <h4 class="mb-0 pt-1 text-nowrap">23.5%</h4>
+            <h4 class="mb-0 pt-1 text-nowrap">{{ $userCount->active_count }}</h4>
           </div>
           <div class="col-4">
             <div class="divider divider-vertical">
@@ -139,29 +139,29 @@
               <p class="mb-0 text-muted">Dibatasi</p>
               <div class="avatar avatar-xs flex-shrink-0">
                 <div class="avatar-initial rounded bg-label-primary">
-                  <i class="mdi mdi-monitor mdi-14px"></i>
+                  <i class="mdi mdi-account-remove mdi-14px"></i>
                 </div>
               </div>
             </div>
-            <h4 class="mb-0 pt-1 text-nowrap">76.5%</h4>
+            <h4 class="mb-0 pt-1 text-nowrap">{{ $userCount->inactive_count }}</</h4>
           </div>
         </div>
         <div class="d-flex align-items-center mt-2 pt-1">
           <div class="progress w-100 rounded" style="height: 10px">
             <div
               class="progress-bar bg-warning"
-              style="width: 20%"
+              style="width: {{ $userActivePercentage }}%"
               role="progressbar"
-              aria-valuenow="20"
+              aria-valuenow="{{ $userCount->active_count }}"
               aria-valuemin="0"
-              aria-valuemax="100"></div>
+              aria-valuemax="{{ $userCount->total_count }}"></div>
             <div
               class="progress-bar bg-danger"
               role="progressbar"
-              style="width: 80%"
-              aria-valuenow="80"
+              style="width: {{ $userInactivePercentage }}%"
+              aria-valuenow="{{ $userCount->inactive_count }}"
               aria-valuemin="0"
-              aria-valuemax="100"></div>
+              aria-valuemax="{{ $userCount->total_count }}"></div>
           </div>
         </div>
       </div>
@@ -188,6 +188,16 @@
                               <th class="py-3">Status</th>
                             </tr>
                           </thead>
+                          @foreach ($emergencyState as $item)
+                          <tr>
+                              <td>{{ $loop->iteration }}</td>
+                              <td>{{ $item->device->owner_device }}</td>
+                              <td>{{ $item->device->residentialBlock->residential->name }} - {{ $item->device->residentialBlock->name_block }} No {{ $item->device->house_number }}</td>
+                              <td>{{ $item->device->phone }}</td>
+                              <td>{{ $item->created_at }}</td>
+                              <td>{{ $item->status }}</td>
+                          </tr>
+                          @endforeach
                         </table>
                       </div>
                     </div>
