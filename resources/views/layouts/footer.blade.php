@@ -7,9 +7,9 @@
                 <script>
                     document.write(new Date().getFullYear());
                 </script>
-                , made with <span class="text-danger">❤️</span> by
+                , JAGA WARGA by
                 <a href="https://pixinvent.com" target="_blank"
-                   class="footer-link fw-medium">Pixinvent</a>
+                   class="footer-link fw-medium">Sendy</a>
             </div>
         </div>
     </div>
