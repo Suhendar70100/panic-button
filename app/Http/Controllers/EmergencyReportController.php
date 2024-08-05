@@ -15,8 +15,6 @@ use App\Http\Requests\EmergencyReportUpdateRequest;
 use Illuminate\Support\Facades\Auth;
 
 
-
-
 class EmergencyReportController extends Controller
 {
 
