@@ -10,14 +10,15 @@ use App\Http\Controllers\ResidentialBlockController;
 use App\Http\Controllers\DeviceActivityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmergencyReportController;
+use App\Http\Controllers\EmergencyStateController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// Route::get('/device-activity', [DeviceActivityController::class, 'dataTable'])
-//         ->name('deviceActivity.dataTable')
-//         ->middleware('auth:sanctum');
+Route::get('/emergency-state', [EmergencyStateController::class, 'dataTable'])
+        ->name('emergencyState.dataTable')
+        ->middleware('auth:sanctum');
 
 Route::get('/emergency-report', [EmergencyReportController::class, 'dataTable'])
         ->name('EmergencyReport.dataTable')

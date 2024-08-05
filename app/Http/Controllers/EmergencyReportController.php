@@ -12,6 +12,8 @@ use Yajra\DataTables\Facades\DataTables;
 use Exception;
 use App\Http\Requests\EmergencyReportCreateRequest;
 use App\Http\Requests\EmergencyReportUpdateRequest;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -20,22 +22,46 @@ class EmergencyReportController extends Controller
 
     public function index()
     {
-        {
-            $emergencyState = EmergencyState::with('device.residentialBlock.residential')
-                                                ->where(function ($query) {
+        $user = Auth::user();
+        if ($user->role != 'Admin') {
+        $emergencyState = EmergencyState::with('device.residentialBlock.residential')
+                                            ->where(function ($query) {
                                                     $query->where('status', 'Darurat')
                                                         ->orWhere('status', 'Belum dilaporkan');
                                                 })
-                                                ->orderBy('created_at', 'desc')
-                                                ->get();
-
-            return view('emergencyReport.index', compact('emergencyState'));
+                                            ->whereHas('device.residentialBlock.residential', function ($query) use ($user) {
+                                                    $query->where('id', $user->id_residential);
+                                                })
+                                            ->orderBy('created_at', 'desc')
+                                            ->get();
+        } else {
+            $emergencyState = EmergencyState::with('device.residentialBlock.residential')
+                                            ->where(function ($query) {
+                                                    $query->where('status', 'Darurat')
+                                                        ->orWhere('status', 'Belum dilaporkan');
+                                                })
+                                            ->orderBy('created_at', 'desc')
+                                            ->get();
         }
+            return view('emergencyReport.index', compact('emergencyState'));
     }
 
     public function dataTable(): JsonResponse
     {
-        $data = EmergencyReport::with('emergencyState.device.residentialblock.residential')->get();
+        $user = Auth::user();
+
+        if($user->role == 'Admin'){
+            $data = EmergencyReport::with('emergencyState.device.residentialblock.residential')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        } else {
+            $data = EmergencyReport::with('emergencyState.device.residentialblock.residential')
+            ->whereHas('emergencyState.device.residentialblock.residential', function ($query) use ($user) {
+                $query->where('id', $user->id_residential);
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
+        }
 
         return DataTables::of($data)
         ->addColumn('aksi', function ($row) {

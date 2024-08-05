@@ -19,16 +19,6 @@
                     <th>Waktu</th>
                     <th>Status</th>
                 </tr>
-                @foreach ($emergencyState as $item)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->device->owner_device }}</td>
-                    <td>{{ $item->device->residentialBlock->residential->name }} - {{ $item->device->residentialBlock->name_block }} No {{ $item->device->house_number }}</td>
-                    <td>{{ $item->device->phone }}</td>
-                    <td>{{ $item->created_at }}</td>
-                    <td>{{ $item->status }}</td>
-                </tr>
-                @endforeach
                 </thead>
                 <tbody>
                 </tbody>
@@ -38,3 +28,6 @@
     <!--/ Column Search -->
 </div>
 @endsection
+@push("my-scripts")
+    <script src="{{asset('javascripts/emergencyState/global.js')}}"></script>
+@endpush

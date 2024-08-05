@@ -19,6 +19,7 @@ class Device extends Model
         'id_residential_block',
         'owner_device',
         'house_number',
+        'phone',
         'access',
     ];
 
